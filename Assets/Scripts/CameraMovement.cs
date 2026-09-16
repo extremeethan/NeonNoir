@@ -2,11 +2,11 @@ using UnityEngine;
 
 public class CameraMovement : MonoBehaviour
 {
-    public float cameraSpeed;
+    public PlayerController playerController;
 
-    // Update is called once per frame
     void Update()
     {
-        transform.position += new Vector3(cameraSpeed * Time.deltaTime, 0, 0);
+        // Camera move right with player speed
+        transform.Translate(Vector2.right * playerController.playerSpeed * Time.deltaTime);
     }
 }
