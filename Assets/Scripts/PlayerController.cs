@@ -51,15 +51,31 @@ public class PlayerController : MonoBehaviour
         rb.linearVelocity = velocity;
     }
 
-    private void OnCollisionEnter2D(Collision2D other)
+    void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.collider.tag == "Obstacle")
+        if (other.collider.CompareTag("Obstacle"))
         {
             Debug.Log(" Ouch");
         }
-        if (other.collider.tag == "Ground")
+        if (other.collider.CompareTag("Ground"))
         {
             isGrounded = true;
+        }
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Chunk"))
+        {
+            FindObjectOfType<ProGen>().SpawnChunk();
+        }
+    }
+
+    void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.CompareTag("Chunk"))
+        {
+            Destroy(other.transform.parent.gameObject, 5f);
         }
     }
 }
