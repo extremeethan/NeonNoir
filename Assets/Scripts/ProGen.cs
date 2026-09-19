@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class ProGen : MonoBehaviour
 {
-    public GameObject chunkPrefab;
+    public GameObject[] chunkPrefabs;
     public Vector3 nextSpawnPos;
 
     void Start()
@@ -18,7 +18,11 @@ public class ProGen : MonoBehaviour
 
     public void SpawnChunk()
     {
-        GameObject temp = Instantiate(chunkPrefab, nextSpawnPos, Quaternion.identity);
+        // select chunk from array
+        int randomIndex = Random.Range(0, chunkPrefabs.Length);
+        // spawn chunk from array
+        GameObject temp = Instantiate(chunkPrefabs[randomIndex], nextSpawnPos, Quaternion.identity);
+        // set spawn position of next chunk
         nextSpawnPos = temp.transform.GetChild(1).transform.position;
     }
 }
