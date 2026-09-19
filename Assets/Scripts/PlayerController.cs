@@ -73,9 +73,9 @@ public class PlayerController : MonoBehaviour
 
     void OnTriggerExit2D(Collider2D other)
     {
-        if (other.CompareTag("Chunk"))
+        if (other.CompareTag("ChunkParent"))
         {
-            Destroy(other.transform.parent.gameObject, 5f);
+            Destroy(other.gameObject, 5f);
         }
     }
 }
