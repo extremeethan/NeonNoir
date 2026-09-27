@@ -10,9 +10,13 @@ public class PlayerController : MonoBehaviour
     public float diveSpeed = 14f;
     private bool isGrounded = true;
 
-    void Start ()
+    public int maxLives = 3;
+    public int currentLives;
+
+    void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        currentLives = maxLives;
     }
 
     void Update()
@@ -20,7 +24,7 @@ public class PlayerController : MonoBehaviour
         // Player Speed increases over time
         playerSpeed += playerAcceleration * Time.deltaTime;
         // Player moves RIGHT endlessly
-        transform.Translate (Vector2.right * playerSpeed * Time.deltaTime);
+        transform.Translate(Vector2.right * playerSpeed * Time.deltaTime);
 
         if (Input.GetKeyDown(KeyCode.W))
         {
@@ -32,6 +36,12 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.S) && !isGrounded)
         {
             Dive();
+        }
+
+        // Player has gone below the bottom height limit, KILL THEM
+        if (transform.position.y <= -5.55f)
+        {
+            Die();
         }
     }
 
@@ -53,10 +63,6 @@ public class PlayerController : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.collider.CompareTag("Obstacle"))
-        {
-            Debug.Log(" Ouch");
-        }
         if (other.collider.CompareTag("Ground"))
         {
             isGrounded = true;
@@ -69,6 +75,10 @@ public class PlayerController : MonoBehaviour
         {
             FindObjectOfType<ProGen>().SpawnChunk();
         }
+        if (other.CompareTag("Obstacle"))
+        {
+            LoseLife();
+        }
     }
 
     void OnTriggerExit2D(Collider2D other)
@@ -77,5 +87,21 @@ public class PlayerController : MonoBehaviour
         {
             Destroy(other.gameObject, 5f);
         }
+    }
+
+    void LoseLife()
+    {
+        currentLives--;
+
+        if (currentLives <= 0)
+        {
+            Die();
+        }
+    }
+
+    void Die()
+    {
+        FindObjectOfType<GameManager>().isGameActive = false;
+        Destroy(this.gameObject);
     }
 }
