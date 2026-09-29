@@ -14,9 +14,12 @@ public class PlayerController : MonoBehaviour
 
     public int maxLives = 3;
     public int currentLives;
+    private bool isDead;
 
+    public GameManager gameManager;
     void Start()
     {
+        gameObject.SetActive(true);
         rb = GetComponent<Rigidbody2D>();
         currentLives = maxLives;
     }
@@ -127,7 +130,7 @@ public class PlayerController : MonoBehaviour
     {
         currentLives--;
 
-        if (currentLives <= 0)
+        if (currentLives <= 0 && !isDead)
         {
             Die();
         }
@@ -136,6 +139,8 @@ public class PlayerController : MonoBehaviour
     void Die()
     {
         FindObjectOfType<GameManager>().isGameActive = false;
-        Destroy(this.gameObject);
+        isDead = true;
+        gameObject.SetActive(false);
+        gameManager.GameOver();
     }
 }
