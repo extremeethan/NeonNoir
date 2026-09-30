@@ -1,0 +1,75 @@
+{
+    "version": 1,
+    "name": "IA_Touch",
+    "maps": [
+        {
+            "name": "Touch",
+            "id": "a7cce60c-1d7e-4f3c-b6ea-56bfe0d93a2c",
+            "actions": [
+                {
+                    "name": "Jump",
+                    "type": "PassThrough",
+                    "id": "bac6edfc-9d5a-4463-8c46-2dbf86f7fdf9",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Stall",
+                    "type": "PassThrough",
+                    "id": "98fc3bbe-6c8e-4685-ada9-11ec582b4ba8",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Dive",
+                    "type": "PassThrough",
+                    "id": "ee885999-bec9-470f-a6b3-9a4c25f38ef2",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "f67ce7a9-9bd9-47c3-a933-901a5e2f9602",
+                    "path": "<Touchscreen>/delta/up",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2ab85a56-9163-40da-91f4-fc4b15a0c8a4",
+                    "path": "<Touchscreen>/primaryTouch/tap",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Stall",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "7aaa5e1b-2ab5-498d-8af1-ec40ae2f6503",
+                    "path": "<Touchscreen>/delta/down",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Dive",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
