@@ -791,7 +791,7 @@ Transform:
   m_GameObject: {fileID: 304058124}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.292602, y: -3.421821, z: -0.021841958}
+  m_LocalPosition: {x: -2.292602, y: -3.54, z: -0.021841958}
   m_LocalScale: {x: 21.38632, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1519,6 +1519,11 @@ MonoBehaviour:
   playerAcceleration: 0.1
   jumpHeight: 7
   diveSpeed: 14
+  stallTime: 0.5
+  stallTimer: 0
+  maxLives: 3
+  currentLives: 0
+  gameManager: {fileID: 0}
 --- !u!95 &827069276
 Animator:
   serializedVersion: 7
@@ -1647,7 +1652,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 10
   m_Sprite: {fileID: -2413806693520163455, guid: ebe73ca9363db456bacf42c025bb4847, type: 3}
   m_Color: {r: 0.29044306, g: 0.06127627, b: 0.764151, a: 1}
   m_FlipX: 0
@@ -4120,7 +4125,7 @@ Transform:
   m_GameObject: {fileID: 2139796397}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.4326015, y: -1.14, z: 0.021841958}
+  m_LocalPosition: {x: 4.4326015, y: -13.4, z: 0.021841958}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
