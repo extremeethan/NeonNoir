@@ -17,11 +17,14 @@ public class PlayerController : MonoBehaviour
     private bool isDead;
 
     public GameManager gameManager;
+
+    [SerializeField] private Animator animator;
     void Start()
     {
         gameObject.SetActive(true);
         rb = GetComponent<Rigidbody2D>();
         currentLives = maxLives;
+        animator = this.GetComponent<Animator>();
     }
 
     // Update is for events called per frame
@@ -36,6 +39,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.W))
         {
             Jump();
+            animator.SetBool("SwipeUporRecover", true);
             isGrounded = false;
         }
 
@@ -43,11 +47,13 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.S) && !isGrounded)
         {
             Dive();
+            animator.SetBool("SwipeDown", true);
         }
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
             Stall();
+            animator.SetBool("Spin", true);
         }
 
         // Timer for stall time
@@ -102,6 +108,8 @@ public class PlayerController : MonoBehaviour
         if (other.collider.CompareTag("Ground"))
         {
             isGrounded = true;
+            animator.SetBool("SwipeUporRecover", false);
+            animator.SetBool("SwipeDown", false);
         }
     }
 
@@ -115,6 +123,12 @@ public class PlayerController : MonoBehaviour
         if (other.CompareTag("Obstacle"))
         {
             LoseLife();
+            animator.SetBool("Damaged", true);
+        }
+
+        if (other.CompareTag("KillBox") && !isDead)
+        {
+            Die();
         }
     }
 
@@ -123,6 +137,11 @@ public class PlayerController : MonoBehaviour
         if (other.CompareTag("ChunkParent"))
         {
             Destroy(other.gameObject, 5f);
+        }
+
+        if (other.CompareTag("Obstacle"))
+        {
+            animator.SetBool("Damaged", false);
         }
     }
 
