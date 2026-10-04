@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -19,6 +20,10 @@ public class PlayerController : MonoBehaviour
     public GameManager gameManager;
 
     [SerializeField] private Animator animator;
+
+    private Vector2 touchStartPosition;
+    public float swipeThreshold = 50f;
+
     void Start()
     {
         gameObject.SetActive(true);
@@ -66,6 +71,42 @@ public class PlayerController : MonoBehaviour
         if (transform.position.y <= -5.55f)
         {
             Die();
+        }
+
+        // Mobile Input
+        if (Input.touchCount >0)
+        {
+            Touch touch = Input.GetTouch(0);
+
+            if (touch.phase == TouchPhase.Began)
+            {
+                touchStartPosition = touch.position;
+            }
+
+            if (touch.phase == TouchPhase.Ended)
+            {
+                Vector2 touchEndPosition = touch.position;
+                Vector2 swipe = touchEndPosition - touchStartPosition;
+                
+                if (swipe.y > swipeThreshold && Mathf.Abs(swipe.y) > Mathf.Abs(swipe.x))
+                {
+                    Jump();
+                    isGrounded = false;
+                }
+                
+                else if (swipe.y < -swipeThreshold && Mathf.Abs(swipe.y) > Mathf.Abs(swipe.x))
+                {
+                    if (!isGrounded)
+                    {
+                        Dive();
+                    }
+                }
+
+                else if (swipe.magnitude < swipeThreshold)
+                {
+                    Stall();
+                }
+            }
         }
     }
 
