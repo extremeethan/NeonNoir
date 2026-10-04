@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -17,11 +18,18 @@ public class PlayerController : MonoBehaviour
     private bool isDead;
 
     public GameManager gameManager;
+
+    [SerializeField] private Animator animator;
+
+    private Vector2 touchStartPosition;
+    public float swipeThreshold = 50f;
+
     void Start()
     {
         gameObject.SetActive(true);
         rb = GetComponent<Rigidbody2D>();
         currentLives = maxLives;
+        animator = this.GetComponent<Animator>();
     }
 
     // Update is for events called per frame
@@ -36,6 +44,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.W))
         {
             Jump();
+            animator.SetBool("SwipeUporRecover", true);
             isGrounded = false;
         }
 
@@ -43,11 +52,13 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.S) && !isGrounded)
         {
             Dive();
+            animator.SetBool("SwipeDown", true);
         }
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
             Stall();
+            animator.SetBool("Spin", true);
         }
 
         // Timer for stall time
@@ -60,6 +71,42 @@ public class PlayerController : MonoBehaviour
         if (transform.position.y <= -5.55f)
         {
             Die();
+        }
+
+        // Mobile Input
+        if (Input.touchCount >0)
+        {
+            Touch touch = Input.GetTouch(0);
+
+            if (touch.phase == TouchPhase.Began)
+            {
+                touchStartPosition = touch.position;
+            }
+
+            if (touch.phase == TouchPhase.Ended)
+            {
+                Vector2 touchEndPosition = touch.position;
+                Vector2 swipe = touchEndPosition - touchStartPosition;
+                
+                if (swipe.y > swipeThreshold && Mathf.Abs(swipe.y) > Mathf.Abs(swipe.x))
+                {
+                    Jump();
+                    isGrounded = false;
+                }
+                
+                else if (swipe.y < -swipeThreshold && Mathf.Abs(swipe.y) > Mathf.Abs(swipe.x))
+                {
+                    if (!isGrounded)
+                    {
+                        Dive();
+                    }
+                }
+
+                else if (swipe.magnitude < swipeThreshold)
+                {
+                    Stall();
+                }
+            }
         }
     }
 
@@ -102,6 +149,8 @@ public class PlayerController : MonoBehaviour
         if (other.collider.CompareTag("Ground"))
         {
             isGrounded = true;
+            animator.SetBool("SwipeUporRecover", false);
+            animator.SetBool("SwipeDown", false);
         }
     }
 
@@ -115,6 +164,12 @@ public class PlayerController : MonoBehaviour
         if (other.CompareTag("Obstacle"))
         {
             LoseLife();
+            animator.SetBool("Damaged", true);
+        }
+
+        if (other.CompareTag("KillBox") && !isDead)
+        {
+            Die();
         }
     }
 
@@ -123,6 +178,11 @@ public class PlayerController : MonoBehaviour
         if (other.CompareTag("ChunkParent"))
         {
             Destroy(other.gameObject, 5f);
+        }
+
+        if (other.CompareTag("Obstacle"))
+        {
+            animator.SetBool("Damaged", false);
         }
     }
 
