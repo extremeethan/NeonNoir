@@ -127,6 +127,10 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
+  - component: {fileID: 994310075}
+  - component: {fileID: 994310074}
+  - component: {fileID: 994310073}
+  - component: {fileID: 994310072}
   - component: {fileID: 153819347}
   - component: {fileID: 153819346}
   - component: {fileID: 153819345}
@@ -188,6 +192,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1520930718}
     m_Modifications:
+    - target: {fileID: 271404549088129564, guid: 913f297c54b47c249a9188568e66c4e8, type: 3}
+      propertyPath: m_TagString
+      value: Obstacle
+      objectReference: {fileID: 0}
+    - target: {fileID: 2820228118780418614, guid: 913f297c54b47c249a9188568e66c4e8, type: 3}
+      propertyPath: m_TagString
+      value: Obstacle
+      objectReference: {fileID: 0}
     - target: {fileID: 2901320885818365959, guid: 913f297c54b47c249a9188568e66c4e8, type: 3}
       propertyPath: m_Name
       value: MasonChunk1
@@ -235,6 +247,14 @@ PrefabInstance:
     - target: {fileID: 6561730856009238012, guid: 913f297c54b47c249a9188568e66c4e8, type: 3}
       propertyPath: m_SortingOrder
       value: -4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7789086458592234606, guid: 913f297c54b47c249a9188568e66c4e8, type: 3}
+      propertyPath: m_TagString
+      value: Obstacle
+      objectReference: {fileID: 0}
+    - target: {fileID: 8097592205140018012, guid: 913f297c54b47c249a9188568e66c4e8, type: 3}
+      propertyPath: m_TagString
+      value: Obstacle
       objectReference: {fileID: 0}
     - target: {fileID: 9216824467920891350, guid: 913f297c54b47c249a9188568e66c4e8, type: 3}
       propertyPath: m_SortingOrder
@@ -742,7 +762,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3266054015158514784, guid: 9ea95e39da82fce4490a1719cad152a8, type: 3}
       propertyPath: chunkPrefabs.Array.size
-      value: 5
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 3266054015158514784, guid: 9ea95e39da82fce4490a1719cad152a8, type: 3}
       propertyPath: 'chunkPrefabs.Array.data[0]'
@@ -751,11 +771,11 @@ PrefabInstance:
     - target: {fileID: 3266054015158514784, guid: 9ea95e39da82fce4490a1719cad152a8, type: 3}
       propertyPath: 'chunkPrefabs.Array.data[1]'
       value: 
-      objectReference: {fileID: 2901320885818365959, guid: b0a0cf5e2fbbf10488ec03eba6c383f7, type: 3}
+      objectReference: {fileID: 2901320885818365959, guid: aeab318c01184744693340ca28aeeec5, type: 3}
     - target: {fileID: 3266054015158514784, guid: 9ea95e39da82fce4490a1719cad152a8, type: 3}
       propertyPath: 'chunkPrefabs.Array.data[2]'
       value: 
-      objectReference: {fileID: 5105660426107911899, guid: daf6f7c432aacfe43b42babbc885bd46, type: 3}
+      objectReference: {fileID: 2901320885818365959, guid: 0facce054cb9e9a42a90372f995708b6, type: 3}
     - target: {fileID: 3266054015158514784, guid: 9ea95e39da82fce4490a1719cad152a8, type: 3}
       propertyPath: 'chunkPrefabs.Array.data[3]'
       value: 
@@ -763,7 +783,67 @@ PrefabInstance:
     - target: {fileID: 3266054015158514784, guid: 9ea95e39da82fce4490a1719cad152a8, type: 3}
       propertyPath: 'chunkPrefabs.Array.data[4]'
       value: 
+      objectReference: {fileID: 2901320885818365959, guid: 58f8fc5a705f1304298e0220e8989257, type: 3}
+    - target: {fileID: 3266054015158514784, guid: 9ea95e39da82fce4490a1719cad152a8, type: 3}
+      propertyPath: 'chunkPrefabs.Array.data[5]'
+      value: 
+      objectReference: {fileID: 5105660426107911899, guid: e70b2682f3ffaac448275042e087c1b0, type: 3}
+    - target: {fileID: 3266054015158514784, guid: 9ea95e39da82fce4490a1719cad152a8, type: 3}
+      propertyPath: 'chunkPrefabs.Array.data[6]'
+      value: 
+      objectReference: {fileID: 5105660426107911899, guid: dd86dc326aea653498069a1970f6cc39, type: 3}
+    - target: {fileID: 3266054015158514784, guid: 9ea95e39da82fce4490a1719cad152a8, type: 3}
+      propertyPath: 'chunkPrefabs.Array.data[7]'
+      value: 
+      objectReference: {fileID: 5105660426107911899, guid: daf6f7c432aacfe43b42babbc885bd46, type: 3}
+    - target: {fileID: 3266054015158514784, guid: 9ea95e39da82fce4490a1719cad152a8, type: 3}
+      propertyPath: 'chunkPrefabs.Array.data[8]'
+      value: 
+      objectReference: {fileID: 5105660426107911899, guid: ac323090b379ccc4f9a56da7c95ac766, type: 3}
+    - target: {fileID: 3266054015158514784, guid: 9ea95e39da82fce4490a1719cad152a8, type: 3}
+      propertyPath: 'chunkPrefabs.Array.data[9]'
+      value: 
       objectReference: {fileID: 5105660426107911899, guid: d1d2eba1ee0cf41469b80697b08980e0, type: 3}
+    - target: {fileID: 3266054015158514784, guid: 9ea95e39da82fce4490a1719cad152a8, type: 3}
+      propertyPath: 'chunkPrefabs.Array.data[10]'
+      value: 
+      objectReference: {fileID: 7110827750796198014, guid: aa8af73498242c34182494c51112df01, type: 3}
+    - target: {fileID: 3266054015158514784, guid: 9ea95e39da82fce4490a1719cad152a8, type: 3}
+      propertyPath: 'chunkPrefabs.Array.data[11]'
+      value: 
+      objectReference: {fileID: 805039429618906572, guid: d45f957cfbec93d41aaa81bb94a531a7, type: 3}
+    - target: {fileID: 3266054015158514784, guid: 9ea95e39da82fce4490a1719cad152a8, type: 3}
+      propertyPath: 'chunkPrefabs.Array.data[12]'
+      value: 
+      objectReference: {fileID: 7956314867547360875, guid: 1447464ba7d380d48be0c350f03e5a64, type: 3}
+    - target: {fileID: 3266054015158514784, guid: 9ea95e39da82fce4490a1719cad152a8, type: 3}
+      propertyPath: 'chunkPrefabs.Array.data[13]'
+      value: 
+      objectReference: {fileID: 7498243907939920308, guid: a7f0e799ff856d048965255493d218e2, type: 3}
+    - target: {fileID: 3266054015158514784, guid: 9ea95e39da82fce4490a1719cad152a8, type: 3}
+      propertyPath: 'chunkPrefabs.Array.data[14]'
+      value: 
+      objectReference: {fileID: 6550335885412590682, guid: 30c6f8d958f33cb45a7e4132221af3cd, type: 3}
+    - target: {fileID: 3266054015158514784, guid: 9ea95e39da82fce4490a1719cad152a8, type: 3}
+      propertyPath: 'chunkPrefabs.Array.data[15]'
+      value: 
+      objectReference: {fileID: 5105660426107911899, guid: a32ecfbfeace4c942a6b33812749a93c, type: 3}
+    - target: {fileID: 3266054015158514784, guid: 9ea95e39da82fce4490a1719cad152a8, type: 3}
+      propertyPath: 'chunkPrefabs.Array.data[16]'
+      value: 
+      objectReference: {fileID: 5105660426107911899, guid: 42ef28d2c64d4d94fbfdc59824bdadc9, type: 3}
+    - target: {fileID: 3266054015158514784, guid: 9ea95e39da82fce4490a1719cad152a8, type: 3}
+      propertyPath: 'chunkPrefabs.Array.data[17]'
+      value: 
+      objectReference: {fileID: 5105660426107911899, guid: 149c0e35aa44006418c09f162b88caf8, type: 3}
+    - target: {fileID: 3266054015158514784, guid: 9ea95e39da82fce4490a1719cad152a8, type: 3}
+      propertyPath: 'chunkPrefabs.Array.data[18]'
+      value: 
+      objectReference: {fileID: 5105660426107911899, guid: c7b4160d1c0ce0c42898bfc0d2a0f693, type: 3}
+    - target: {fileID: 3266054015158514784, guid: 9ea95e39da82fce4490a1719cad152a8, type: 3}
+      propertyPath: 'chunkPrefabs.Array.data[19]'
+      value: 
+      objectReference: {fileID: 5105660426107911899, guid: b40494cf88d12494aabc457e2adb20c7, type: 3}
     - target: {fileID: 6241908150643888513, guid: 9ea95e39da82fce4490a1719cad152a8, type: 3}
       propertyPath: m_Name
       value: Spawner
