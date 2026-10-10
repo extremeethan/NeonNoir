@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2277954910493663466}
   - component: {fileID: 3266054015158514784}
+  - component: {fileID: -8726968002016636131}
   m_Layer: 0
   m_Name: Spawner
   m_TagString: Untagged
@@ -49,3 +50,21 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   nextSpawnPos: {x: 10.74, y: -2.67, z: 0}
+--- !u!114 &-8726968002016636131
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6241908150643888513}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88239e9d6ac939a4d83f62ed505f5ef1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  foodPrefabs: []
+  maxX: 0
+  minX: 0
+  maxY: 0
+  minY: 0
+  timeBetweenSpawn: 0
