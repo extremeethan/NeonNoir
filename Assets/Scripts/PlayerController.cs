@@ -10,7 +10,7 @@ public class PlayerController : MonoBehaviour
     public float jumpHeight = 7f;
     public float diveSpeed = 14f;
     public float stallTime = 0.5f;
-    public float stallTimer = 0f;
+    private float stallTimer = 0f;
     private bool isGrounded = true;
 
     public int maxLives = 3;
