@@ -46,7 +46,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.W))
         {
             Jump();
-            animator.SetBool("SwipeUporRecover", true);
+            //animator.SetBool("SwipeUporRecover", true);
             isGrounded = false;
         }
 
@@ -157,8 +157,8 @@ public class PlayerController : MonoBehaviour
         if (other.collider.CompareTag("Ground"))
         {
             isGrounded = true;
-            animator.SetBool("SwipeUporRecover", false);
-            animator.SetBool("SwipeDown", false);
+            //animator.SetBool("SwipeUporRecover", false);
+            //animator.SetBool("SwipeDown", false);
         }
     }
 
