@@ -5,6 +5,7 @@ public class GameManager : MonoBehaviour
 {
     public bool isGameActive = true;
     public GameObject gameOverScreen;
+    public GameObject HUD;
 
     void Start()
     {
@@ -25,7 +26,9 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
+        isGameActive = false;
         gameOverScreen.SetActive(true);
+        HUD.SetActive(false);
     }
 
     public void Restart()

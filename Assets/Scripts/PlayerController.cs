@@ -26,6 +26,20 @@ public class PlayerController : MonoBehaviour
     private Vector2 touchStartPosition;
     public float swipeThreshold = 50f;
 
+    //Sound
+    public AudioSource audioSource;
+    //when damaged
+    public AudioClip PC_Damaged;
+    //when killed
+    public AudioClip PC_Death;
+    //When flaps / jumps
+    public AudioClip PC_Flap;
+    //when dive down
+    public AudioClip PC_Dive;
+    // whem stalls / spins
+    public AudioClip PC_Stall;
+
+
     void Start()
     {
         gameObject.SetActive(true);
@@ -55,6 +69,7 @@ public class PlayerController : MonoBehaviour
         {
             Dive();
             animator.SetBool("SwipeDown", true);
+            
         }
 
         if (Input.GetKeyDown(KeyCode.Space))
@@ -136,6 +151,8 @@ public class PlayerController : MonoBehaviour
         Vector2 velocity = rb.linearVelocity;
         velocity.y = jumpHeight;
         rb.linearVelocity = velocity;
+        //Play player flap sound
+        audioSource.PlayOneShot(PC_Flap);
     }
 
     void Dive()
@@ -144,12 +161,16 @@ public class PlayerController : MonoBehaviour
         Vector2 velocity = rb.linearVelocity;
         velocity.y = -diveSpeed;
         rb.linearVelocity = velocity;
+        //Play player dive sound
+        audioSource.PlayOneShot(PC_Dive);
     }
 
     void Stall()
     {
         // Set timer
         stallTimer = stallTime;
+        //Play player stall sound
+        audioSource.PlayOneShot(PC_Stall);
     }
 
     void OnCollisionEnter2D(Collision2D other)
@@ -204,6 +225,8 @@ public class PlayerController : MonoBehaviour
         if (other.CompareTag("Obstacle"))
         {
             animator.SetBool("Damaged", false);
+            //Play player damaged sound
+            audioSource.PlayOneShot(PC_Damaged);
         }
     }
 
@@ -227,9 +250,11 @@ public class PlayerController : MonoBehaviour
 
     void Die()
     {
-        FindObjectOfType<GameManager>().isGameActive = false;
         isDead = true;
         gameObject.SetActive(false);
         gameManager.GameOver();
+        //Play Death Sound
+        audioSource.PlayOneShot(PC_Death);
     }
 }
+
