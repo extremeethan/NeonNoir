@@ -315,7 +315,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5996332611605740661, guid: f7d264906b4b6c04bac6f91912fb485f, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6525279898367315128, guid: f7d264906b4b6c04bac6f91912fb485f, type: 3}
       propertyPath: m_Pivot.x
@@ -432,6 +432,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   score: 0
+  scoreRate: 10
   scoreText: {fileID: 727887520}
   gameManager: {fileID: 0}
   pauseMenu: {fileID: 0}
@@ -462,9 +463,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: HUD
       objectReference: {fileID: 0}
+    - target: {fileID: 1091740250442183118, guid: e852af9cbc973854396a3eb4e4c16ff5, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1190270990372730158, guid: e852af9cbc973854396a3eb4e4c16ff5, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2479950235886296644, guid: e852af9cbc973854396a3eb4e4c16ff5, type: 3}
       propertyPath: m_Pivot.x
@@ -548,7 +553,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8005787187376321653, guid: e852af9cbc973854396a3eb4e4c16ff5, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -670,7 +675,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1393101548728374934, guid: dd072e14ebd148246b347735c272edb3, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5199365177160504218, guid: dd072e14ebd148246b347735c272edb3, type: 3}
       propertyPath: m_Pivot.x
