@@ -227,7 +227,6 @@ public class PlayerController : MonoBehaviour
 
     void Die()
     {
-        FindObjectOfType<GameManager>().isGameActive = false;
         isDead = true;
         gameObject.SetActive(false);
         gameManager.GameOver();
