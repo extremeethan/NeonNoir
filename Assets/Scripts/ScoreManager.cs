@@ -4,6 +4,7 @@ using UnityEngine.UI;
 public class ScoreManager : MonoBehaviour
 {
     public float score = 0f;
+    public float scoreRate = 10f;
     public Text scoreText;
 
     public GameManager gameManager;
@@ -16,13 +17,13 @@ public class ScoreManager : MonoBehaviour
             return;
         }
 
-        score += 1;
-        scoreText.text = score.ToString();
+        score += scoreRate * Time.deltaTime;
+        scoreText.text = Mathf.FloorToInt(score).ToString();
     }
 
     public void AddScore(float points)
     {
         score += points;
-        scoreText.text = score.ToString();
+        scoreText.text = Mathf.FloorToInt(score).ToString();
     }
 }

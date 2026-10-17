@@ -10,11 +10,13 @@ public class PlayerController : MonoBehaviour
     public float jumpHeight = 7f;
     public float diveSpeed = 14f;
     public float stallTime = 0.5f;
-    public float stallTimer = 0f;
+    private float stallTimer = 0f;
     private bool isGrounded = true;
 
     public int maxLives = 3;
     public int currentLives;
+    public float damageCooldown = 1.5f;
+    private float damageTimer = 0f;
     private bool isDead;
 
     public GameManager gameManager;
@@ -44,7 +46,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.W))
         {
             Jump();
-            animator.SetBool("SwipeUporRecover", true);
+            //animator.SetBool("SwipeUporRecover", true);
             isGrounded = false;
         }
 
@@ -65,6 +67,12 @@ public class PlayerController : MonoBehaviour
         if (stallTimer > 0)
         {
             stallTimer -= Time.deltaTime;
+        }
+
+        // Timer for damage cooldown
+        if (damageTimer >0)
+        {
+            damageTimer -= Time.deltaTime;
         }
 
         // Player has gone below the bottom height limit, KILL THEM
@@ -149,8 +157,8 @@ public class PlayerController : MonoBehaviour
         if (other.collider.CompareTag("Ground"))
         {
             isGrounded = true;
-            animator.SetBool("SwipeUporRecover", false);
-            animator.SetBool("SwipeDown", false);
+            //animator.SetBool("SwipeUporRecover", false);
+            //animator.SetBool("SwipeDown", false);
         }
     }
 
@@ -163,14 +171,27 @@ public class PlayerController : MonoBehaviour
 
         if (other.CompareTag("Obstacle"))
         {
-            LoseLife();
-            animator.SetBool("Damaged", true);
+            if (damageTimer <= 0)
+            {
+                Debug.Log("Player Took Damage");
+
+                LoseLife();
+                damageTimer = damageCooldown;
+                animator.SetBool("Damaged", true);
+
+                Debug.Log("Lives Remaining " + currentLives);
+                Debug.Log("Damage Cooldown Active for " + damageCooldown + " seconds");
+            }
+            else
+            {
+                Debug.Log("Damage Ignored");
+            }
         }
 
         if (other.CompareTag("KillBox") && !isDead)
-        {
-            Die();
-        }
+            {
+                Die();
+            }
     }
 
     void OnTriggerExit2D(Collider2D other)
@@ -183,6 +204,14 @@ public class PlayerController : MonoBehaviour
         if (other.CompareTag("Obstacle"))
         {
             animator.SetBool("Damaged", false);
+        }
+    }
+
+    void OnTriggerStay2D(Collider2D other)
+    {
+       if (stallTimer > 0 && other.CompareTag("Breakable"))
+        {
+            Destroy(other.gameObject);
         }
     }
 
