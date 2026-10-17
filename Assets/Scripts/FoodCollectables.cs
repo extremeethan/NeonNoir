@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class FoodCollectables : MonoBehaviour
 {
-    public int scoreValue = 10;
+    public int scoreValue = 50;
 
     // Update is called once per frame
     void Update()
