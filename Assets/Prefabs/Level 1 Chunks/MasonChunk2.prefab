@@ -635,16 +635,28 @@ PrefabInstance:
       value: front_streetLamp1
       objectReference: {fileID: 0}
     - target: {fileID: -3888481672020999207, guid: e826300e9f25d184dab882bc484e1206, type: 3}
+      propertyPath: m_Layer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -3888481672020999207, guid: e826300e9f25d184dab882bc484e1206, type: 3}
       propertyPath: m_TagString
       value: Obstacle
       objectReference: {fileID: 0}
     - target: {fileID: 8742538545776668643, guid: e826300e9f25d184dab882bc484e1206, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.1621
+      objectReference: {fileID: 0}
+    - target: {fileID: 8742538545776668643, guid: e826300e9f25d184dab882bc484e1206, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.2686
+      objectReference: {fileID: 0}
+    - target: {fileID: 8742538545776668643, guid: e826300e9f25d184dab882bc484e1206, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 12.622173
+      value: 12.7097
       objectReference: {fileID: 0}
     - target: {fileID: 8742538545776668643, guid: e826300e9f25d184dab882bc484e1206, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.65
+      value: 2.1752
       objectReference: {fileID: 0}
     - target: {fileID: 8742538545776668643, guid: e826300e9f25d184dab882bc484e1206, type: 3}
       propertyPath: m_LocalPosition.z
@@ -721,7 +733,7 @@ PolygonCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -740,9 +752,9 @@ PolygonCollider2D:
     - - {x: -0.3104329, y: 2.1432903}
       - {x: -0.7405343, y: 1.4779333}
       - {x: -0.57428694, y: 0.4574799}
-      - {x: -0.2689247, y: 0.2922746}
-      - {x: -0.3358295, y: -2.074612}
-      - {x: 0.35056424, y: -2.0830605}
+      - {x: -0.2551514, y: 0.40582746}
+      - {x: -0.1430038, y: 0.39831686}
+      - {x: 0.28169775, y: 0.40248537}
       - {x: 0.32770407, y: 0.40017205}
       - {x: 0.5507829, y: 0.42632496}
       - {x: 0.66251457, y: 1.4026872}
@@ -826,6 +838,10 @@ PrefabInstance:
     - target: {fileID: -3888481672020999207, guid: e48020fffd4e6a147bb86619d72bfc08, type: 3}
       propertyPath: m_Name
       value: obstacle_windowBigLight
+      objectReference: {fileID: 0}
+    - target: {fileID: -3888481672020999207, guid: e48020fffd4e6a147bb86619d72bfc08, type: 3}
+      propertyPath: m_Layer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -3888481672020999207, guid: e48020fffd4e6a147bb86619d72bfc08, type: 3}
       propertyPath: m_TagString
@@ -914,7 +930,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -946,6 +962,10 @@ PrefabInstance:
     - target: {fileID: -3888481672020999207, guid: 36666df40b6f22143ac61c03a3453c8e, type: 3}
       propertyPath: m_Name
       value: obstacle_floorSpotlight
+      objectReference: {fileID: 0}
+    - target: {fileID: -3888481672020999207, guid: 36666df40b6f22143ac61c03a3453c8e, type: 3}
+      propertyPath: m_Layer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -3888481672020999207, guid: 36666df40b6f22143ac61c03a3453c8e, type: 3}
       propertyPath: m_TagString
@@ -1034,7 +1054,7 @@ PolygonCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -1077,6 +1097,10 @@ PrefabInstance:
     - target: {fileID: -3888481672020999207, guid: eb8a6d6c49a9cc64abb09105f9f8973e, type: 3}
       propertyPath: m_Name
       value: front_billboard
+      objectReference: {fileID: 0}
+    - target: {fileID: -3888481672020999207, guid: eb8a6d6c49a9cc64abb09105f9f8973e, type: 3}
+      propertyPath: m_Layer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -3888481672020999207, guid: eb8a6d6c49a9cc64abb09105f9f8973e, type: 3}
       propertyPath: m_TagString
@@ -1177,7 +1201,7 @@ PolygonCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -1691,6 +1715,10 @@ PrefabInstance:
       value: obstacle_windowSmallLight
       objectReference: {fileID: 0}
     - target: {fileID: -3888481672020999207, guid: 2d619d4a9bdfbdb44bcf614a7f6f010c, type: 3}
+      propertyPath: m_Layer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -3888481672020999207, guid: 2d619d4a9bdfbdb44bcf614a7f6f010c, type: 3}
       propertyPath: m_TagString
       value: Obstacle
       objectReference: {fileID: 0}
@@ -1782,7 +1810,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
