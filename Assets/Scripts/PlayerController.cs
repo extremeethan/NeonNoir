@@ -68,14 +68,14 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.S) && !isGrounded)
         {
             Dive();
-            animator.SetBool("SwipeDown", true);
+            //animator.SetBool("SwipeDown", true);
             
         }
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
             Stall();
-            animator.SetBool("Spin", true);
+            //animator.SetBool("Spin", true);
         }
 
         // Timer for stall time
@@ -198,7 +198,7 @@ public class PlayerController : MonoBehaviour
 
                 LoseLife();
                 damageTimer = damageCooldown;
-                animator.SetBool("Damaged", true);
+                //animator.SetBool("Damaged", true);
 
                 Debug.Log("Lives Remaining " + currentLives);
                 Debug.Log("Damage Cooldown Active for " + damageCooldown + " seconds");
@@ -224,7 +224,7 @@ public class PlayerController : MonoBehaviour
 
         if (other.CompareTag("Obstacle"))
         {
-            animator.SetBool("Damaged", false);
+            //animator.SetBool("Damaged", false);
             //Play player damaged sound
             audioSource.PlayOneShot(PC_Damaged);
         }
