@@ -38,6 +38,7 @@ public class PlayerController : MonoBehaviour
     public AudioClip PC_Dive;
     // whem stalls / spins
     public AudioClip PC_Stall;
+    public AudioClip PC_Walk;
 
 
     void Start()
@@ -46,6 +47,7 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         currentLives = maxLives;
         animator = this.GetComponent<Animator>();
+   
     }
 
     // Update is for events called per frame
@@ -180,6 +182,7 @@ public class PlayerController : MonoBehaviour
             isGrounded = true;
             //animator.SetBool("SwipeUporRecover", false);
             //animator.SetBool("SwipeDown", false);
+            audioSource.PlayOneShot(PC_Walk);
         }
     }
 
@@ -212,7 +215,9 @@ public class PlayerController : MonoBehaviour
         if (other.CompareTag("KillBox") && !isDead)
             {
                 Die();
-            }
+            //Play Death Sound
+                audioSource.PlayOneShot(PC_Death);
+        }
     }
 
     void OnTriggerExit2D(Collider2D other)
@@ -253,8 +258,6 @@ public class PlayerController : MonoBehaviour
         isDead = true;
         gameObject.SetActive(false);
         gameManager.GameOver();
-        //Play Death Sound
-        audioSource.PlayOneShot(PC_Death);
     }
 }
 
