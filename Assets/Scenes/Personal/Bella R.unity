@@ -2984,6 +2984,20 @@ MonoBehaviour:
   playerAcceleration: 0.1
   jumpHeight: 7
   diveSpeed: 14
+  stallTime: 0.5
+  maxLives: 3
+  currentLives: 0
+  damageCooldown: 1.5
+  gameManager: {fileID: 0}
+  animator: {fileID: 0}
+  swipeThreshold: 50
+  audioSource: {fileID: 0}
+  PC_Damaged: {fileID: 0}
+  PC_Death: {fileID: 0}
+  PC_Flap: {fileID: 0}
+  PC_Dive: {fileID: 0}
+  PC_Stall: {fileID: 0}
+  PC_Walk: {fileID: 0}
 --- !u!95 &1290228392
 Animator:
   serializedVersion: 7

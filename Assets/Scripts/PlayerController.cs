@@ -1,4 +1,5 @@
 using System;
+using UnityEngine.EventSystems;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -25,6 +26,7 @@ public class PlayerController : MonoBehaviour
 
     private Vector2 touchStartPosition;
     public float swipeThreshold = 50f;
+    private bool touchStartedOnUI;
 
     //Sound
     public AudioSource audioSource;
@@ -38,6 +40,7 @@ public class PlayerController : MonoBehaviour
     public AudioClip PC_Dive;
     // whem stalls / spins
     public AudioClip PC_Stall;
+    public AudioClip PC_Walk;
 
 
     void Start()
@@ -46,6 +49,7 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         currentLives = maxLives;
         animator = this.GetComponent<Animator>();
+   
     }
 
     // Update is for events called per frame
@@ -97,37 +101,44 @@ public class PlayerController : MonoBehaviour
         }
 
         // Mobile Input
-        if (Input.touchCount >0)
+        if (Input.touchCount > 0)
         {
             Touch touch = Input.GetTouch(0);
 
             if (touch.phase == TouchPhase.Began)
             {
                 touchStartPosition = touch.position;
+                touchStartedOnUI = EventSystem.current != null && EventSystem.current.IsPointerOverGameObject(touch.fingerId);
             }
 
             if (touch.phase == TouchPhase.Ended)
             {
-                Vector2 touchEndPosition = touch.position;
-                Vector2 swipe = touchEndPosition - touchStartPosition;
-                
-                if (swipe.y > swipeThreshold && Mathf.Abs(swipe.y) > Mathf.Abs(swipe.x))
+                if (touchStartedOnUI)
                 {
-                    Jump();
-                    isGrounded = false;
-                }
-                
-                else if (swipe.y < -swipeThreshold && Mathf.Abs(swipe.y) > Mathf.Abs(swipe.x))
-                {
-                    if (!isGrounded)
-                    {
-                        Dive();
-                    }
-                }
 
-                else if (swipe.magnitude < swipeThreshold)
-                {
-                    Stall();
+                    Vector2 touchEndPosition = touch.position;
+                    Vector2 swipe = touchEndPosition - touchStartPosition;
+
+                    // Swipe Down to Dive
+                    if (swipe.y < -swipeThreshold && Mathf.Abs(swipe.y) > Mathf.Abs(swipe.x))
+                    {
+                        if (!isGrounded)
+                        {
+                            Dive();
+                        }
+                    }
+
+                    // Horizontal Swipe to Stall
+                    else if (Mathf.Abs(swipe.x) > swipeThreshold && Mathf.Abs(swipe.x) > Mathf.Abs(swipe.y))
+                    {
+                        Stall();
+                    }
+
+                    else if (swipe.magnitude < swipeThreshold)
+                    {
+                        Jump();
+                        isGrounded = false;
+                    }
                 }
             }
         }
@@ -180,6 +191,7 @@ public class PlayerController : MonoBehaviour
             isGrounded = true;
             //animator.SetBool("SwipeUporRecover", false);
             //animator.SetBool("SwipeDown", false);
+            audioSource.PlayOneShot(PC_Walk);
         }
     }
 
@@ -212,7 +224,9 @@ public class PlayerController : MonoBehaviour
         if (other.CompareTag("KillBox") && !isDead)
             {
                 Die();
-            }
+            //Play Death Sound
+                audioSource.PlayOneShot(PC_Death);
+        }
     }
 
     void OnTriggerExit2D(Collider2D other)
@@ -253,8 +267,6 @@ public class PlayerController : MonoBehaviour
         isDead = true;
         gameObject.SetActive(false);
         gameManager.GameOver();
-        //Play Death Sound
-        audioSource.PlayOneShot(PC_Death);
     }
 }
 
