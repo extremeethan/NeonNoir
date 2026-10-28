@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour
 {
@@ -12,6 +13,10 @@ public class MainMenu : MonoBehaviour
     public GameObject levelTwoLock;
     public GameObject levelThreeLock;
     public GameObject endlessLock;
+
+    public Button levelTwoButton;
+    public Button levelThreeButton;
+    public Button endlessButton;
 
     void Start()
     {
@@ -44,11 +49,20 @@ public class MainMenu : MonoBehaviour
             return;
         }
 
-        // Lock levels
-        levelTwoLock.SetActive(!DataManager.Instance.IsLevelUnlocked(DataManager.LevelIndex.LevelTwo));
-        levelThreeLock.SetActive(!DataManager.Instance.IsLevelUnlocked(DataManager.LevelIndex.LevelThree));
-        endlessLock.SetActive(!DataManager.Instance.IsLevelUnlocked(DataManager.LevelIndex.Endless));
+        // Locked T or F
+        bool levelTwoUnlocked = DataManager.Instance.IsLevelUnlocked(DataManager.LevelIndex.LevelTwo);
+        bool levelThreeUnlocked = DataManager.Instance.IsLevelUnlocked(DataManager.LevelIndex.LevelThree);
+        bool endlessUnlocked = DataManager.Instance.IsLevelUnlocked(DataManager.LevelIndex.Endless);
 
+        // Show lock icons for locked levels
+        levelTwoLock.SetActive(!levelTwoUnlocked);
+        levelThreeLock.SetActive(!levelThreeUnlocked);
+        endlessLock.SetActive(!endlessUnlocked);
+
+        // Button interaction linked to lock state
+        levelTwoButton.interactable = levelTwoUnlocked;
+        levelThreeButton.interactable = levelThreeUnlocked;
+        endlessButton.interactable = endlessUnlocked;
     }
 
     // Now Loads the level with the highest unlocked index

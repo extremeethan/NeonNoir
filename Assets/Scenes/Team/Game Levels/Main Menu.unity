@@ -462,9 +462,9 @@ GameObject:
   - component: {fileID: 1212447658}
   - component: {fileID: 1212447657}
   m_Layer: 0
-  m_Name: GameManager
+  m_Name: MenuManager
   m_TagString: Untagged
-  m_Icon: {fileID: 3936346786652291628, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -483,6 +483,11 @@ MonoBehaviour:
   mainMenu: {fileID: 63520931}
   levelSelectScreen: {fileID: 420760884}
   creditsScreen: {fileID: 1033514666}
+  settingsMenu: {fileID: 0}
+  loreScreen: {fileID: 0}
+  levelTwoLock: {fileID: 0}
+  levelThreeLock: {fileID: 0}
+  endlessLock: {fileID: 0}
 --- !u!4 &1212447658
 Transform:
   m_ObjectHideFlags: 0
@@ -492,7 +497,7 @@ Transform:
   m_GameObject: {fileID: 1212447656}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 369.49768, y: 374.1064, z: -3.9972994}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
