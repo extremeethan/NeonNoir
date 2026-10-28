@@ -1,25 +1,25 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class EndPoint : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
+    public DataManager.LevelIndex currentLevel;
+    private bool levelCompleted = false;
+    
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") && !levelCompleted)
         {
-            SceneManager.LoadScene("Main Menu");
+            levelCompleted = true;
+            ScoreManager scoreManager = FindObjectOfType<ScoreManager>();
+
+            if (scoreManager != null)
+            {
+                DataManager.Instance.SaveHighestScore(currentLevel, Mathf.FloorToInt(scoreManager.score));
+            }
+
+            DataManager.Instance.UnlockedNextLevel(currentLevel);
+            FindObjectOfType<GameManager>().LevelComplete();
+            Debug.Log($"{currentLevel} complete.");
         }
     }
 }
