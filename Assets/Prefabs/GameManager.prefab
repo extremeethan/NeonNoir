@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1149442284074754181}
   - component: {fileID: 2161454006826179627}
   - component: {fileID: 3586014386968975712}
+  - component: {fileID: 5883061204799086487}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -47,6 +48,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isGameActive: 1
   gameOverScreen: {fileID: 0}
+  winScreen: {fileID: 0}
+  HUD: {fileID: 0}
 --- !u!114 &3586014386968975712
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -59,5 +62,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5da68f2810a13b4f825641dcddd90bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameManager: {fileID: 0}
   pauseMenu: {fileID: 0}
   isPaused: 0
+--- !u!114 &5883061204799086487
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8026919912712530067}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a29e9f1ae43edf4fa9f3399fe45eec0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  livesIcons:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}

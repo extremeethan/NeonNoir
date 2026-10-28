@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1932046158087084973}
   - component: {fileID: 1347776297225025773}
+  - component: {fileID: 8616195726647728288}
   m_Layer: 5
   m_Name: Slider
   m_TagString: Untagged
@@ -90,6 +91,24 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &8616195726647728288
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 852008623991228099}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26e251d4e2e706b4ca0c5e42c8c5ceec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slider: {fileID: 1347776297225025773}
+  player: {fileID: 0}
+  levelStart: {fileID: 0}
+  levelFinish: {fileID: 0}
+  distanceSlider: {fileID: 852008623991228099}
+  isCurrentLevelEndless: 0
 --- !u!1 &1091740250442183118
 GameObject:
   m_ObjectHideFlags: 0
@@ -420,7 +439,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.102000006, y: 0.859}
   m_AnchorMax: {x: 0.19972917, y: 1}
-  m_AnchoredPosition: {x: -4.5, y: 25.999878}
+  m_AnchoredPosition: {x: -4.5, y: 25.999786}
   m_SizeDelta: {x: -90, y: -52}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5535299765070119729
@@ -581,7 +600,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1046159446111127928}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: PauseMenu, Assembly-CSharp
+        m_MethodName: PauseGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &3425154719091337922
 GameObject:
   m_ObjectHideFlags: 0
@@ -616,7 +647,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.859}
   m_AnchorMax: {x: 0.102000006, y: 1}
-  m_AnchoredPosition: {x: 3.5, y: 25.999878}
+  m_AnchoredPosition: {x: 3.5, y: 25.999786}
   m_SizeDelta: {x: -99, y: -52}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4336200467716443428
