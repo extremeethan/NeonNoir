@@ -239,6 +239,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5da68f2810a13b4f825641dcddd90bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameManager: {fileID: 0}
   pauseMenu: {fileID: 2028156465}
   isPaused: 0
 --- !u!114 &633367472
@@ -255,6 +256,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isGameActive: 1
   gameOverScreen: {fileID: 0}
+  winScreen: {fileID: 0}
+  HUD: {fileID: 0}
 --- !u!4 &633367473
 Transform:
   m_ObjectHideFlags: 0
@@ -612,9 +615,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   score: 0
+  scoreRate: 10
   scoreText: {fileID: 732930566}
   gameManager: {fileID: 633367472}
   pauseMenu: {fileID: 633367471}
+  currentLevel: 1
 --- !u!4 &1692535260
 Transform:
   m_ObjectHideFlags: 0

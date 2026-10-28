@@ -258,6 +258,57 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 4862888187693614785, guid: 08a1f49d32da95846a5aa5eaf21d97b5, type: 3}
   m_PrefabInstance: {fileID: 1544739490}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &862034091
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 862034092}
+  - component: {fileID: 862034093}
+  m_Layer: 0
+  m_Name: DataManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &862034092
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 862034091}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &862034093
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 862034091}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 724bcab0f8a73824584ab7fe26962e8e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  saveData:
+    levelOneHighestScore: 0
+    levelTwoHighestScore: 0
+    levelThreeHighestScore: 0
+    endlessHighestScore: 0
+    highestLevelUnlocked: 1
+    collectedLoreIDs: []
 --- !u!1 &1033514666 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 937942629235404276, guid: a2614dcaac7b8f1479dcf240d34e870b, type: 3}
@@ -864,7 +915,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 950009700675208275, guid: dd072e14ebd148246b347735c272edb3, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -876,7 +928,8 @@ SceneRoots:
   - {fileID: 1079759943}
   - {fileID: 1212447658}
   - {fileID: 8817712359099573470}
-  - {fileID: 2091714877}
   - {fileID: 1843447036}
   - {fileID: 1544739490}
   - {fileID: 95609612}
+  - {fileID: 2091714877}
+  - {fileID: 862034092}
