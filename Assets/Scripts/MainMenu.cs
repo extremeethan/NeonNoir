@@ -6,6 +6,12 @@ public class MainMenu : MonoBehaviour
     public GameObject mainMenu;
     public GameObject levelSelectScreen;
     public GameObject creditsScreen;
+    public GameObject settingsMenu;
+    public GameObject loreScreen;
+
+    public GameObject levelTwoLock;
+    public GameObject levelThreeLock;
+    public GameObject endlessLock;
 
     void Start()
     {
@@ -15,47 +21,136 @@ public class MainMenu : MonoBehaviour
         mainMenu.SetActive(true);
         levelSelectScreen.SetActive(false);
         creditsScreen.SetActive(false);
+        settingsMenu.SetActive(false);
+        loreScreen.SetActive(false);
+
+        UpdateLevelLocks();
     }
 
-    // Loads the next scene listed in the Build Index
-    // Needs to be changed with progression in mind
+    private void OnEnable()
+    {
+        // Refresh progression whenever this object is enabled
+        if (DataManager.Instance != null)
+        {
+            UpdateLevelLocks();
+        }
+    }
+
+    public void UpdateLevelLocks()
+    {
+        if (DataManager.Instance == null)
+        {
+            Debug.LogError("DataManager not found.");
+            return;
+        }
+
+        // Lock levels
+        levelTwoLock.SetActive(!DataManager.Instance.IsLevelUnlocked(DataManager.LevelIndex.LevelTwo));
+        levelThreeLock.SetActive(!DataManager.Instance.IsLevelUnlocked(DataManager.LevelIndex.LevelThree));
+        endlessLock.SetActive(!DataManager.Instance.IsLevelUnlocked(DataManager.LevelIndex.Endless));
+
+    }
+
+    // Now Loads the level with the highest unlocked index
     public void PlayGame()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        if (DataManager.Instance == null || DataManager.Instance.saveData == null)
+        {
+            Debug.LogError("DataManager or SaveData not found");
+            return;
+        }
+        
+        int level = DataManager.Instance.saveData.highestLevelUnlocked;
+
+        switch (level)
+        {
+            case 1: PlayLevelOne();
+                break;
+            case 2: PlayLevelTwo();
+                break;
+            case 3: PlayLevelThree();
+                break;
+            case 4: PlayEndless();
+                break;
+            default: PlayLevelOne();
+                break;
+        }
+    }
+
+    private void LoadLevelIfUnlocked(DataManager.LevelIndex level,string sceneName)
+    {
+        if (DataManager.Instance == null)
+        {
+            Debug.LogError("DataManager was not found");
+            return;
+        }
+
+        if (!DataManager.Instance.IsLevelUnlocked(level))
+        {
+            Debug.Log($"{level} is locked");
+            UpdateLevelLocks();
+            return;
+        }
+
+        SceneManager.LoadScene(sceneName);
     }
 
     public void PlayEndless()
     {
-        SceneManager.LoadScene("Endless");
+        LoadLevelIfUnlocked(DataManager.LevelIndex.Endless, "Endless");
     }
 
-    public void LevelSelect()
+    public void GoToLevelSelect()
     {
         mainMenu.SetActive(false);
         levelSelectScreen.SetActive(true);
         creditsScreen.SetActive(false);
+        settingsMenu.SetActive(false);
+        loreScreen.SetActive(false);
+
+        UpdateLevelLocks();
     }
 
     public void PlayLevelOne()
     {
-        SceneManager.LoadScene("Level 1");
+        LoadLevelIfUnlocked(DataManager.LevelIndex.LevelOne, "Level 1");
     }
 
     public void PlayLevelTwo()
     {
-        SceneManager.LoadScene("Level 2");
+        LoadLevelIfUnlocked(DataManager.LevelIndex.LevelTwo, "Level 2");
     }
 
     public void PlayLevelThree()
     {
-        SceneManager.LoadScene("Level 3");
+        LoadLevelIfUnlocked(DataManager.LevelIndex.LevelThree, "Level 3");
     }
 
-    public void Credits()
+    public void GoToCredits()
     {
         mainMenu.SetActive(false);
         levelSelectScreen.SetActive(false);
         creditsScreen.SetActive(true);
+        settingsMenu.SetActive(false);
+        loreScreen.SetActive(false);
+    }
+
+    public void GoToSettings()
+    {
+        mainMenu.SetActive(false);
+        levelSelectScreen.SetActive(false);
+        creditsScreen.SetActive(false);
+        settingsMenu.SetActive(true);
+        loreScreen.SetActive(false);
+    }
+
+    public void GoToLore()
+    {
+        mainMenu.SetActive(false);
+        levelSelectScreen.SetActive(false);
+        creditsScreen.SetActive(false);
+        settingsMenu.SetActive(false);
+        loreScreen.SetActive(true);
     }
 
     public void BackToMainMenu()
@@ -63,6 +158,8 @@ public class MainMenu : MonoBehaviour
         mainMenu.SetActive(true);
         levelSelectScreen.SetActive(false);
         creditsScreen.SetActive(false);
+        settingsMenu.SetActive(false);
+        loreScreen.SetActive(false);
     }
 
     public void QuitGame()
