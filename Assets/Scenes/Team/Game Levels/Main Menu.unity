@@ -625,9 +625,9 @@ MonoBehaviour:
   creditsScreen: {fileID: 1033514666}
   settingsMenu: {fileID: 1673495926}
   loreScreen: {fileID: 1671264017}
-  levelTwoLock: {fileID: 0}
-  levelThreeLock: {fileID: 0}
-  endlessLock: {fileID: 0}
+  levelTwoLock: {fileID: 1544739492}
+  levelThreeLock: {fileID: 1544739491}
+  endlessLock: {fileID: 8817712359099573471}
   levelTwoButton: {fileID: 2088079638}
   levelThreeButton: {fileID: 301153720}
   endlessButton: {fileID: 1564013632}
@@ -877,7 +877,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4862888187693614785, guid: 08a1f49d32da95846a5aa5eaf21d97b5, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6255170015349868705, guid: 08a1f49d32da95846a5aa5eaf21d97b5, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -892,6 +892,16 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 08a1f49d32da95846a5aa5eaf21d97b5, type: 3}
+--- !u!1 &1544739491 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6065841217582045792, guid: 08a1f49d32da95846a5aa5eaf21d97b5, type: 3}
+  m_PrefabInstance: {fileID: 1544739490}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1544739492 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8255083991140122902, guid: 08a1f49d32da95846a5aa5eaf21d97b5, type: 3}
+  m_PrefabInstance: {fileID: 1544739490}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1564013632 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4907914067809768033, guid: dd072e14ebd148246b347735c272edb3, type: 3}
@@ -1116,6 +1126,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Main Menu
       objectReference: {fileID: 0}
+    - target: {fileID: 1393101548728374934, guid: dd072e14ebd148246b347735c272edb3, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2011714424967011132, guid: dd072e14ebd148246b347735c272edb3, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -1229,6 +1243,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dd072e14ebd148246b347735c272edb3, type: 3}
+--- !u!1 &8817712359099573471 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4361419709228442667, guid: dd072e14ebd148246b347735c272edb3, type: 3}
+  m_PrefabInstance: {fileID: 8817712359099573470}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
