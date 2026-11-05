@@ -9,6 +9,7 @@ public class ScoreManager : MonoBehaviour
 
     public GameManager gameManager;
     public PauseMenu pauseMenu;
+    public DataManager.LevelIndex currentLevel;
     
     void Update()
     {
@@ -25,5 +26,15 @@ public class ScoreManager : MonoBehaviour
     {
         score += points;
         scoreText.text = Mathf.FloorToInt(score).ToString();
+    }
+
+    public void SaveHighestScore()
+    {
+        if (DataManager.Instance == null)
+            return;
+
+        int finalScore = Mathf.FloorToInt(score);
+
+        DataManager.Instance.SaveHighestScore(currentLevel, finalScore);
     }
 }

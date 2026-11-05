@@ -5,6 +5,7 @@ public class GameManager : MonoBehaviour
 {
     public bool isGameActive = true;
     public GameObject gameOverScreen;
+    public GameObject winScreen;
     public GameObject HUD;
 
     void Start()
@@ -17,11 +18,7 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        if (gameOverScreen.activeInHierarchy)
-        {
-            Cursor.visible = true;
-            Cursor.lockState = CursorLockMode.None;
-        }
+
     }
 
     public void GameOver()
@@ -29,15 +26,39 @@ public class GameManager : MonoBehaviour
         isGameActive = false;
         gameOverScreen.SetActive(true);
         HUD.SetActive(false);
+
+        ScoreManager scoreManager = FindObjectOfType<ScoreManager>();
+        if (scoreManager != null)
+        {
+            scoreManager.SaveHighestScore();
+        }
+
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+    }
+
+    public void LevelComplete()
+    {
+        if (!isGameActive)
+            return;
+
+        isGameActive = false;
+        winScreen.SetActive(true);
+        HUD.SetActive(false);
+
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
     }
 
     public void Restart()
     {
+        Time.timeScale = 1f;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     public void GoToMainMenu()
     {
+        Time.timeScale = 1f;
         SceneManager.LoadScene("Main Menu");
     }
 

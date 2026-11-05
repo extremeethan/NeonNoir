@@ -212,6 +212,9 @@ public class PlayerController : MonoBehaviour
                 damageTimer = damageCooldown;
                 //animator.SetBool("Damaged", true);
 
+
+
+
                 Debug.Log("Lives Remaining " + currentLives);
                 Debug.Log("Damage Cooldown Active for " + damageCooldown + " seconds");
             }
