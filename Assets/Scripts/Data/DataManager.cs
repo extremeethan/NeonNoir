@@ -137,4 +137,11 @@ public class DataManager : MonoBehaviour
         saveData.collectedLoreIDs.Add(loreID);
         SaveGame();
     }
+
+    public void UnlockAll()
+    {
+        saveData.highestLevelUnlocked = 4;
+        SaveGame();
+        FindObjectOfType<MainMenu>()?.UpdateLevelLocks();
+    }
 }
