@@ -14,7 +14,7 @@ public class VideoManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        Object.FindFirstObjectByType<GameManager>().isGameActive = false;
+        FindFirstObjectByType<GameManager>().isGameActive = false;
 
         videoPlayer.loopPointReached += OnVideoFinished;
         videoPlayer.Play();
@@ -54,7 +54,7 @@ public class VideoManager : MonoBehaviour
         videoPlayer.Stop();
         videoProjector.SetActive(false);
 
-        Object.FindFirstObjectByType<GameManager>().isGameActive = true;
+        FindFirstObjectByType<GameManager>().isGameActive = true;
     }
 
     void OnDestroy()
