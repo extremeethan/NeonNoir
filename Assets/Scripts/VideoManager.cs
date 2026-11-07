@@ -14,6 +14,9 @@ public class VideoManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        Object.FindFirstObjectByType<GameManager>().isGameActive = false;
+
+        videoPlayer.loopPointReached += OnVideoFinished;
         videoPlayer.Play();
     }
 
@@ -23,7 +26,7 @@ public class VideoManager : MonoBehaviour
         if (videoFinished)
             return;
 
-        videoTimer += Time.deltaTime;
+        videoTimer += Time.unscaledDeltaTime;
 
         if (videoTimer >= skipDelay && Input.anyKeyDown)
         {
@@ -34,6 +37,11 @@ public class VideoManager : MonoBehaviour
         {
             FinishVideo();
         }
+    }
+
+    void OnVideoFinished(VideoPlayer videoPlayer)
+    {
+        FinishVideo();
     }
 
     void FinishVideo()
@@ -47,5 +55,11 @@ public class VideoManager : MonoBehaviour
         videoProjector.SetActive(false);
 
         Object.FindFirstObjectByType<GameManager>().isGameActive = true;
+    }
+
+    void OnDestroy()
+    {
+        if (videoPlayer != null)
+            videoPlayer.loopPointReached -= OnVideoFinished;
     }
 }
