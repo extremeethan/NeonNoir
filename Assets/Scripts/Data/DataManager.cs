@@ -143,5 +143,6 @@ public class DataManager : MonoBehaviour
         saveData.highestLevelUnlocked = 4;
         SaveGame();
         FindFirstObjectByType<MainMenu>()?.UpdateLevelLocks();
+        FindFirstObjectByType<MainMenu>()?.UpdateLoreUnlocks();
     }
 }
