@@ -18,6 +18,10 @@ public class MainMenu : MonoBehaviour
     public Button levelThreeButton;
     public Button endlessButton;
 
+    public GameObject levelOneLore;
+    public GameObject levelTwoLore;
+    public GameObject levelThreeLore;
+
     void Start()
     {
         Cursor.visible = true;
@@ -63,6 +67,19 @@ public class MainMenu : MonoBehaviour
         levelTwoButton.interactable = levelTwoUnlocked;
         levelThreeButton.interactable = levelThreeUnlocked;
         endlessButton.interactable = endlessUnlocked;
+    }
+
+    public void UpdateLoreUnlocks()
+    {
+        if (DataManager.Instance == null)
+        {
+            Debug.LogError("DataManager not found.");
+            return;
+        }
+
+        levelOneLore.SetActive(DataManager.Instance.HasCollectedLore("Lore_LevelOne"));
+        levelTwoLore.SetActive(DataManager.Instance.HasCollectedLore("Lore_LevelTwo"));
+        levelThreeLore.SetActive(DataManager.Instance.HasCollectedLore("Lore_LevelThree"));
     }
 
     // Now Loads the level with the highest unlocked index
@@ -165,6 +182,8 @@ public class MainMenu : MonoBehaviour
         creditsScreen.SetActive(false);
         settingsMenu.SetActive(false);
         loreScreen.SetActive(true);
+
+        UpdateLoreUnlocks();
     }
 
     public void BackToMainMenu()
