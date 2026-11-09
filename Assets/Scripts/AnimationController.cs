@@ -3,6 +3,7 @@ using UnityEngine;
 public class PlayerAnimationController : MonoBehaviour
 {
     private Animator animator;
+    public PlayerController playerController;
 
     [Header("AFK & Timeout Settings")]
     [SerializeField] private float afkDelay = 0.5f;
@@ -89,12 +90,15 @@ public class PlayerAnimationController : MonoBehaviour
         // NOTE: We do NOT reset PARAM_SUCCESS here so Spin can complete and transition into SuccessSpin!
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        animator.SetBool(PARAM_HURT, true);
+        if (other.CompareTag("Obstacle"))
+        {
+                animator.SetBool(PARAM_HURT, true);
+        }
     }
 
-    private void OnCollisionExit2D(Collision2D collision)
+    private void OnTriggerExit2D(Collider2D other)
     {
         animator.SetBool(PARAM_HURT, false);
     }

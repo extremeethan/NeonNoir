@@ -22,11 +22,18 @@ public class PlayerController : MonoBehaviour
 
     public GameManager gameManager;
 
-    [SerializeField] private Animator animator;
-
     private Vector2 touchStartPosition;
     public float swipeThreshold = 50f;
     private bool touchStartedOnUI;
+
+    // Animation
+    [SerializeField] private Animator animator;
+
+    private const string PARAM_DASH = "IsDash";
+    private const string PARAM_DIVE = "IsDive";
+    //private const string PARAM_SWIPE_UP = "IsSwipeUp";
+    private const string PARAM_HURT = "IsHurt";
+    private const string PARAM_SUCCESS = "IsSuccess";
 
     //Sound
     public AudioSource audioSource;
@@ -42,13 +49,17 @@ public class PlayerController : MonoBehaviour
     public AudioClip PC_Stall;
     public AudioClip PC_Walk;
 
-
     void Start()
     {
         gameObject.SetActive(true);
         rb = GetComponent<Rigidbody2D>();
         currentLives = maxLives;
-        animator = this.GetComponent<Animator>();
+        animator = GetComponent<Animator>();
+
+        animator.SetBool(PARAM_DASH, false);
+        animator.SetBool(PARAM_DIVE, false);
+        animator.SetBool(PARAM_HURT, false);
+        animator.SetBool(PARAM_SUCCESS, false);
    
     }
 
@@ -64,22 +75,18 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.W))
         {
             Jump();
-            //animator.SetBool("SwipeUporRecover", true);
             isGrounded = false;
         }
 
         // Requiring the player to NOT be on the ground in order to dive, hopefully to prevent them from forcing themselves through the floor lol
         if (Input.GetKeyDown(KeyCode.S) && !isGrounded)
         {
-            Dive();
-            //animator.SetBool("SwipeDown", true);
-            
+            Dive(); 
         }
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
             Stall();
-            //animator.SetBool("Spin", true);
         }
 
         // Timer for stall time
@@ -88,8 +95,15 @@ public class PlayerController : MonoBehaviour
             stallTimer -= Time.deltaTime;
         }
 
+        // End of stall
+        if (stallTimer <= 0)
+        {
+            animator.SetBool(PARAM_DASH, false);
+            animator.SetBool(PARAM_SUCCESS, false);
+        }
+
         // Timer for damage cooldown
-        if (damageTimer >0)
+        if (damageTimer > 0)
         {
             damageTimer -= Time.deltaTime;
         }
@@ -115,7 +129,6 @@ public class PlayerController : MonoBehaviour
             {
                 if (touchStartedOnUI)
                 {
-
                     Vector2 touchEndPosition = touch.position;
                     Vector2 swipe = touchEndPosition - touchStartPosition;
 
@@ -162,7 +175,7 @@ public class PlayerController : MonoBehaviour
         Vector2 velocity = rb.linearVelocity;
         velocity.y = jumpHeight;
         rb.linearVelocity = velocity;
-        //Play player flap sound
+        // Play player flap sound
         audioSource.PlayOneShot(PC_Flap);
     }
 
@@ -172,16 +185,20 @@ public class PlayerController : MonoBehaviour
         Vector2 velocity = rb.linearVelocity;
         velocity.y = -diveSpeed;
         rb.linearVelocity = velocity;
-        //Play player dive sound
+        // Play player dive sound
         audioSource.PlayOneShot(PC_Dive);
+        // Dive Anim
+        animator.SetBool(PARAM_DIVE, true);
     }
 
     void Stall()
     {
         // Set timer
         stallTimer = stallTime;
-        //Play player stall sound
+        // Play player stall sound
         audioSource.PlayOneShot(PC_Stall);
+        // Stall Anim
+        animator.SetBool(PARAM_DASH, true);
     }
 
     void OnCollisionEnter2D(Collision2D other)
@@ -189,8 +206,8 @@ public class PlayerController : MonoBehaviour
         if (other.collider.CompareTag("Ground"))
         {
             isGrounded = true;
-            //animator.SetBool("SwipeUporRecover", false);
-            //animator.SetBool("SwipeDown", false);
+            //animator.SetBool(PARAM_SWIPE_UP, false);
+            animator.SetBool(PARAM_DIVE, false);
             audioSource.PlayOneShot(PC_Walk);
         }
     }
@@ -199,7 +216,7 @@ public class PlayerController : MonoBehaviour
     {
         if (other.CompareTag("Chunk"))
         {
-            FindObjectOfType<ProGen>().SpawnChunk();
+            FindFirstObjectByType<ProGen>().SpawnChunk();
         }
 
         if (other.CompareTag("Obstacle"))
@@ -210,10 +227,8 @@ public class PlayerController : MonoBehaviour
 
                 LoseLife();
                 damageTimer = damageCooldown;
-                //animator.SetBool("Damaged", true);
-
-
-
+                // Damaged Anim
+                animator.SetBool(PARAM_HURT, true);
 
                 Debug.Log("Lives Remaining " + currentLives);
                 Debug.Log("Damage Cooldown Active for " + damageCooldown + " seconds");
@@ -225,11 +240,11 @@ public class PlayerController : MonoBehaviour
         }
 
         if (other.CompareTag("KillBox") && !isDead)
-            {
-                Die();
-            //Play Death Sound
-                audioSource.PlayOneShot(PC_Death);
-        }
+           {
+            Die();
+            // Play Death Sound
+            audioSource.PlayOneShot(PC_Death);
+           }
     }
 
     void OnTriggerExit2D(Collider2D other)
@@ -241,8 +256,9 @@ public class PlayerController : MonoBehaviour
 
         if (other.CompareTag("Obstacle"))
         {
-            //animator.SetBool("Damaged", false);
-            //Play player damaged sound
+            // Damaged Anim Turn Off
+            animator.SetBool(PARAM_HURT, false);
+            // Play player damaged sound
             audioSource.PlayOneShot(PC_Damaged);
         }
     }
@@ -252,6 +268,7 @@ public class PlayerController : MonoBehaviour
        if (stallTimer > 0 && other.CompareTag("Breakable"))
         {
             Destroy(other.gameObject);
+            animator.SetBool(PARAM_SUCCESS, true);
         }
     }
 
@@ -270,6 +287,8 @@ public class PlayerController : MonoBehaviour
         isDead = true;
         gameObject.SetActive(false);
         gameManager.GameOver();
+
+        //animator.SetBool(PARAM_HURT, true);
     }
 }
 
