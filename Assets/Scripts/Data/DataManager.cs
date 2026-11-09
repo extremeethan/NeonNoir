@@ -142,7 +142,7 @@ public class DataManager : MonoBehaviour
     {
         saveData.highestLevelUnlocked = 4;
         FindFirstObjectByType<MainMenu>()?.UpdateLevelLocks();
-        FindFirstObjectByType<MainMenu>()?.UpdateLoreUnlocks();
+        //FindFirstObjectByType<MainMenu>()?.UpdateLoreUnlocks();
         SaveGame();
 
         Debug.Log("Master Key Inserted. Everything is Unlocked!");
