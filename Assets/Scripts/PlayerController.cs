@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public float playerSpeed = 5f;
-    public float playerAcceleration = 0.1f;
+    //public float playerAcceleration = 0.01f;
     private Rigidbody2D rb;
 
     public float jumpHeight = 7f;
@@ -66,11 +66,14 @@ public class PlayerController : MonoBehaviour
     // Update is for events called per frame
     void Update()
     {
+        if (!gameManager.isGameActive)
+            return;
+
         // Player Speed increases over time
-        playerSpeed += playerAcceleration * Time.deltaTime;
+        //playerSpeed += playerAcceleration * Time.deltaTime;
 
         // Player moves RIGHT endlessly
-        transform.Translate(Vector2.right * playerSpeed * Time.deltaTime);
+        transform.Translate(playerSpeed * Time.deltaTime * Vector2.right);
 
         if (Input.GetKeyDown(KeyCode.W))
         {
@@ -160,6 +163,9 @@ public class PlayerController : MonoBehaviour
     // FixedUpdate is for fixed intervals independent of frame rate
     void FixedUpdate()
     {
+        if (!gameManager.isGameActive) 
+            return;
+
         // If we have time to stall, suspend player vertical movement
         if (stallTimer > 0)
         {
@@ -203,6 +209,9 @@ public class PlayerController : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D other)
     {
+        if (!gameManager.isGameActive)
+            return;
+
         if (other.collider.CompareTag("Ground"))
         {
             isGrounded = true;
@@ -214,6 +223,9 @@ public class PlayerController : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
+        if (!gameManager.isGameActive)
+            return;
+
         if (other.CompareTag("Chunk"))
         {
             FindFirstObjectByType<ProGen>().SpawnChunk();
@@ -257,6 +269,9 @@ public class PlayerController : MonoBehaviour
 
     void OnTriggerExit2D(Collider2D other)
     {
+        if (!gameManager.isGameActive)
+            return;
+
         if (other.CompareTag("ChunkParent"))
         {
             Destroy(other.gameObject, 5f);
@@ -280,7 +295,10 @@ public class PlayerController : MonoBehaviour
 
     void OnTriggerStay2D(Collider2D other)
     {
-       if (stallTimer > 0 && other.CompareTag("Breakable"))
+        if (!gameManager.isGameActive)
+            return;
+
+        if (stallTimer > 0 && other.CompareTag("Breakable"))
         {
             other.GetComponent<OnBroken>().BreakObject();
             animator.SetBool(PARAM_SUCCESS, true);

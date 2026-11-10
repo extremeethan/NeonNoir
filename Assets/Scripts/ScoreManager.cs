@@ -34,6 +34,9 @@ public class ScoreManager : MonoBehaviour
 
     public void AddScore(float points)
     {
+        if (!gameManager.isGameActive || pauseMenu.isPaused)
+            return;
+
         score += points;
         scoreText.text = Mathf.FloorToInt(score).ToString();
 
