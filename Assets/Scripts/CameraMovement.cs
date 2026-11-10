@@ -3,7 +3,7 @@ using UnityEngine;
 public class CameraMovement : MonoBehaviour
 {
     public PlayerController playerController;
-    public float smoothTime = 0.15f;
+    //public float smoothTime = 0.15f;
 
     private float offsetX;
     private float velocityX;
@@ -28,7 +28,12 @@ public class CameraMovement : MonoBehaviour
         float targetX = playerController.transform.position.x + offsetX;
 
         // Smooth Camera Movement
-        float newX = Mathf.SmoothDamp(transform.position.x, targetX, ref velocityX, smoothTime);
+        // Comment out if smoothing sucks balls
+        //float newX = Mathf.SmoothDamp(transform.position.x, targetX, ref velocityX, smoothTime);
+
+        // Camera movmement
+        // Uncomment if smoothing sucks balls
+        float newX = targetX;
 
         // Set Camera to follow
         transform.position = new Vector3(newX, transform.position.y, transform.position.z);
