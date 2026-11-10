@@ -258,8 +258,6 @@ public class PlayerController : MonoBehaviour
         {
             // Damaged Anim Turn Off
             animator.SetBool(PARAM_HURT, false);
-            // Play player damaged sound
-            audioSource.PlayOneShot(PC_Damaged);
         }
     }
 
@@ -267,14 +265,29 @@ public class PlayerController : MonoBehaviour
     {
        if (stallTimer > 0 && other.CompareTag("Breakable"))
         {
-            Destroy(other.gameObject);
+            other.GetComponent<OnBroken>().BreakObject();
             animator.SetBool(PARAM_SUCCESS, true);
         }
     }
 
-    void LoseLife()
+    public void RestoreLife()
+    {
+        if (currentLives < maxLives)
+        {
+            currentLives++;
+            Debug.Log("Player gained a life.");
+
+            // Play player heal sound
+            //audioSource.PlayOneShot(PC_);
+        }
+    }
+
+    public void LoseLife()
     {
         currentLives--;
+
+        // Play player damaged sound
+        audioSource.PlayOneShot(PC_Damaged);
 
         if (currentLives <= 0 && !isDead)
         {
