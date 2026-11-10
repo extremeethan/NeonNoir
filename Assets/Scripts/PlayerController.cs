@@ -239,11 +239,19 @@ public class PlayerController : MonoBehaviour
             }
         }
 
+        if (other.CompareTag("Breakable"))
+        {
+            if (stallTimer <= 0 && damageTimer <= 0)
+            {
+                LoseLife();
+                damageTimer = damageCooldown;
+                animator.SetBool(PARAM_HURT, true);
+            }
+        }
+
         if (other.CompareTag("KillBox") && !isDead)
            {
             Die();
-            // Play Death Sound
-            audioSource.PlayOneShot(PC_Death);
            }
     }
 
@@ -258,6 +266,15 @@ public class PlayerController : MonoBehaviour
         {
             // Damaged Anim Turn Off
             animator.SetBool(PARAM_HURT, false);
+        }
+
+        if (other.CompareTag("Breakable"))
+        {
+            // Turn off Damaged Anim if we are playing Damaged Anim from hitting the box
+            if (animator.GetBool(PARAM_HURT))
+            {
+                animator.SetBool(PARAM_HURT, false);
+            }
         }
     }
 
@@ -300,6 +317,9 @@ public class PlayerController : MonoBehaviour
         isDead = true;
         gameObject.SetActive(false);
         gameManager.GameOver();
+
+        // Play Death Sound
+        audioSource.PlayOneShot(PC_Death);
 
         //animator.SetBool(PARAM_HURT, true);
     }
