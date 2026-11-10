@@ -228,7 +228,12 @@ public class PlayerController : MonoBehaviour
 
         if (other.CompareTag("Chunk"))
         {
-            FindFirstObjectByType<ProGen>().SpawnChunk();
+            ProGen proGen = FindFirstObjectByType<ProGen>();
+
+            if (proGen != null)
+            {
+                proGen.SpawnChunk();
+            }
         }
 
         if (other.CompareTag("Obstacle"))
