@@ -137,4 +137,14 @@ public class DataManager : MonoBehaviour
         saveData.collectedLoreIDs.Add(loreID);
         SaveGame();
     }
+
+    public void UnlockAll()
+    {
+        saveData.highestLevelUnlocked = 4;
+        FindFirstObjectByType<MainMenu>()?.UpdateLevelLocks();
+        //FindFirstObjectByType<MainMenu>()?.UpdateLoreUnlocks();
+        SaveGame();
+
+        Debug.Log("Master Key Inserted. Everything is Unlocked!");
+    }
 }

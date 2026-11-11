@@ -1,18 +1,41 @@
 using UnityEngine;
-using UnityEngine.Rendering;
 
 public class CameraMovement : MonoBehaviour
 {
     public PlayerController playerController;
+    //public float smoothTime = 0.15f;
 
-    void Update()
+    private float offsetX;
+    private float velocityX;
+
+    void Start()
+    {
+        if (playerController != null)
+        {
+            offsetX = transform.position.x - playerController.transform.position.x;
+        }
+    }
+
+    void LateUpdate()
     {
         // Don't move camera if game isn't active
-        if (FindObjectOfType<GameManager>().isGameActive == false)
+        if (FindFirstObjectByType<GameManager>().isGameActive == false || playerController == null)
         {
             return;
         }
-        // Camera move right with player speed
-        transform.Translate(Vector2.right * playerController.playerSpeed * Time.deltaTime);
+
+        // Player's X position
+        float targetX = playerController.transform.position.x + offsetX;
+
+        // Smooth Camera Movement
+        // Comment out if smoothing sucks balls
+        //float newX = Mathf.SmoothDamp(transform.position.x, targetX, ref velocityX, smoothTime);
+
+        // Camera movmement
+        // Uncomment if smoothing sucks balls
+        float newX = targetX;
+
+        // Set Camera to follow
+        transform.position = new Vector3(newX, transform.position.y, transform.position.z);
     }
 }

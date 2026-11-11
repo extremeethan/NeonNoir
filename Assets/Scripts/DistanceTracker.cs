@@ -9,6 +9,7 @@ public class DistanceTracker : MonoBehaviour
     public Transform levelFinish;
 
     public GameObject distanceSlider;
+    public GameObject endFlag;
     public bool isCurrentLevelEndless = false;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -17,10 +18,12 @@ public class DistanceTracker : MonoBehaviour
         if (isCurrentLevelEndless)
         {
             distanceSlider.SetActive(false);
+            endFlag.SetActive(false);
             return;
         }
 
         distanceSlider.SetActive(true);
+        endFlag.SetActive(true);
         slider.minValue = 0f;
         slider.maxValue = 1f;
     }
