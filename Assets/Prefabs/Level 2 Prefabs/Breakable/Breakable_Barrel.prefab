@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5630401529449639177}
   - component: {fileID: 2711396583811233424}
   - component: {fileID: 9114850618650166868}
+  - component: {fileID: -2925144247921961836}
   m_Layer: 0
   m_Name: Breakable_Barrel
   m_TagString: Breakable
@@ -77,7 +78,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 3286163911610860551, guid: 1df5d81422fcd0b4a82610b3a65c85f9, type: 3}
+  m_Sprite: {fileID: 3286163911610860551, guid: 42ed6892f984cb34e8d0f3e620d89414, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -134,3 +135,16 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1.7700031, y: 2.5}
   m_EdgeRadius: 0
+--- !u!114 &-2925144247921961836
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6623648104723559945}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa7183ba2518c584eb37bfc416f1eefb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scoreValue: 50

@@ -14,7 +14,7 @@ public class FoodCollectables : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            FindObjectOfType<ScoreManager>().AddScore(scoreValue);
+            FindFirstObjectByType<ScoreManager>().AddScore(scoreValue);
             Destroy(gameObject);
         }
     }

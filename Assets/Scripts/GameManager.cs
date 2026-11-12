@@ -24,10 +24,11 @@ public class GameManager : MonoBehaviour
     public void GameOver()
     {
         isGameActive = false;
+        Time.timeScale = 0f;
         gameOverScreen.SetActive(true);
         HUD.SetActive(false);
 
-        ScoreManager scoreManager = FindObjectOfType<ScoreManager>();
+        ScoreManager scoreManager = FindFirstObjectByType<ScoreManager>();
         if (scoreManager != null)
         {
             scoreManager.SaveHighestScore();
@@ -43,8 +44,15 @@ public class GameManager : MonoBehaviour
             return;
 
         isGameActive = false;
+        Time.timeScale = 0f;
         winScreen.SetActive(true);
         HUD.SetActive(false);
+
+        ScoreManager scoreManager = FindFirstObjectByType<ScoreManager>();
+        if (scoreManager != null)
+        {
+            scoreManager.SaveHighestScore();
+        }
 
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
