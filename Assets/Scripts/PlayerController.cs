@@ -48,6 +48,9 @@ public class PlayerController : MonoBehaviour
     // whem stalls / spins
     public AudioClip PC_Stall;
     public AudioClip PC_Walk;
+    public AudioClip PC_Heal;
+    public AudioClip PC_BreakObj;
+
 
     void Start()
     {
@@ -305,6 +308,8 @@ public class PlayerController : MonoBehaviour
 
         if (stallTimer > 0 && other.CompareTag("Breakable"))
         {
+
+            audioSource.PlayOneShot(PC_BreakObj);
             other.GetComponent<OnBroken>().BreakObject();
             animator.SetBool(PARAM_SUCCESS, true);
         }
@@ -318,7 +323,7 @@ public class PlayerController : MonoBehaviour
             Debug.Log("Player gained a life.");
 
             // Play player heal sound
-            //audioSource.PlayOneShot(PC_);
+            audioSource.PlayOneShot(PC_Heal);
         }
     }
 
