@@ -133,7 +133,7 @@ public class PlayerController : MonoBehaviour
 
             if (touch.phase == TouchPhase.Ended)
             {
-                if (touchStartedOnUI)
+                if (!touchStartedOnUI)
                 {
                     Vector2 touchEndPosition = touch.position;
                     Vector2 swipe = touchEndPosition - touchStartPosition;
