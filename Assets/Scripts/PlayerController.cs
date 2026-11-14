@@ -186,6 +186,7 @@ public class PlayerController : MonoBehaviour
         rb.linearVelocity = velocity;
         // Play player flap sound
         audioSource.PlayOneShot(PC_Flap);
+        animator.SetBool(PARAM_DIVE, false);
     }
 
     void Dive()
@@ -257,6 +258,8 @@ public class PlayerController : MonoBehaviour
             {
                 Debug.Log("Damage Ignored");
             }
+
+            animator.SetBool(PARAM_DIVE, false);
         }
 
         if (other.CompareTag("Breakable"))
@@ -267,6 +270,8 @@ public class PlayerController : MonoBehaviour
                 damageTimer = damageCooldown;
                 animator.SetBool(PARAM_HURT, true);
             }
+
+            animator.SetBool(PARAM_DIVE, false);
         }
 
         if (other.CompareTag("KillBox") && !isDead)
