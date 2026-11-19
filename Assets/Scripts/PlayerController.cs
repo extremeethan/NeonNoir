@@ -50,6 +50,8 @@ public class PlayerController : MonoBehaviour
     public AudioClip PC_Walk;
     public AudioClip PC_Heal;
     public AudioClip PC_BreakObj;
+    // food & health pickups
+    public AudioClip MunchFood;
 
 
     void Start()
@@ -187,6 +189,7 @@ public class PlayerController : MonoBehaviour
         // Play player flap sound
         audioSource.PlayOneShot(PC_Flap);
         animator.SetBool(PARAM_DIVE, false);
+        animator.SetBool(PARAM_DASH, false);
     }
 
     void Dive()
@@ -199,6 +202,7 @@ public class PlayerController : MonoBehaviour
         audioSource.PlayOneShot(PC_Dive);
         // Dive Anim
         animator.SetBool(PARAM_DIVE, true);
+        animator.SetBool(PARAM_DASH, false);
     }
 
     void Stall()
@@ -209,6 +213,7 @@ public class PlayerController : MonoBehaviour
         audioSource.PlayOneShot(PC_Stall);
         // Stall Anim
         animator.SetBool(PARAM_DASH, true);
+        animator.SetBool(PARAM_DIVE, false);
     }
 
     void OnCollisionEnter2D(Collision2D other)
@@ -262,22 +267,15 @@ public class PlayerController : MonoBehaviour
             animator.SetBool(PARAM_DIVE, false);
         }
 
-        if (other.CompareTag("Breakable"))
-        {
-            if (stallTimer <= 0 && damageTimer <= 0)
-            {
-                LoseLife();
-                damageTimer = damageCooldown;
-                animator.SetBool(PARAM_HURT, true);
-            }
-
-            animator.SetBool(PARAM_DIVE, false);
-        }
-
         if (other.CompareTag("KillBox") && !isDead)
            {
             Die();
            }
+
+        if (other.CompareTag("Food"))
+        {
+            audioSource.PlayOneShot(MunchFood);
+        }
     }
 
     void OnTriggerExit2D(Collider2D other)
@@ -294,15 +292,6 @@ public class PlayerController : MonoBehaviour
         {
             // Damaged Anim Turn Off
             animator.SetBool(PARAM_HURT, false);
-        }
-
-        if (other.CompareTag("Breakable"))
-        {
-            // Turn off Damaged Anim if we are playing Damaged Anim from hitting the box
-            if (animator.GetBool(PARAM_HURT))
-            {
-                animator.SetBool(PARAM_HURT, false);
-            }
         }
     }
 

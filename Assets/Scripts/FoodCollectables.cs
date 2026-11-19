@@ -3,8 +3,8 @@ using UnityEngine;
 public class FoodCollectables : MonoBehaviour
 {
     public int scoreValue = 50;
-    public AudioSource audioSource;
-    public AudioClip MunchFood;
+    //public AudioSource audioSource;
+    //public AudioClip MunchFood;
 
     // Update is called once per frame
     void Update()
@@ -16,8 +16,7 @@ public class FoodCollectables : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            
-            audioSource.PlayOneShot(MunchFood);
+            //audioSource.PlayOneShot(MunchFood);
             FindFirstObjectByType<ScoreManager>().AddScore(scoreValue);
             Destroy(gameObject);
         }
