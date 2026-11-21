@@ -589,11 +589,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3266054015158514784, guid: 9ea95e39da82fce4490a1719cad152a8, type: 3}
       propertyPath: chunkPrefabsA.Array.size
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3266054015158514784, guid: 9ea95e39da82fce4490a1719cad152a8, type: 3}
       propertyPath: chunkPrefabsB.Array.size
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3266054015158514784, guid: 9ea95e39da82fce4490a1719cad152a8, type: 3}
       propertyPath: 'chunkPrefabs.Array.data[0]'
@@ -1138,9 +1138,17 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 3646357309993202931, guid: 7c1f4d6e47c50e24eb84e16428a8b1bc, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3971849161638259364, guid: 7c1f4d6e47c50e24eb84e16428a8b1bc, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 2.9863281
+      objectReference: {fileID: 0}
+    - target: {fileID: 7445145029598908709, guid: 7c1f4d6e47c50e24eb84e16428a8b1bc, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7555642283672315696, guid: 7c1f4d6e47c50e24eb84e16428a8b1bc, type: 3}
       propertyPath: m_Name
@@ -1290,6 +1298,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentLevel: 0
   loreID: 
+  outroVideoManager: {fileID: 0}
 --- !u!4 &2071035971 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1603957518620499, guid: ae9de95f632c95b4cbe4baed2ecea829, type: 3}

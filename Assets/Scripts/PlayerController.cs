@@ -83,7 +83,6 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.W))
         {
             Jump();
-            isGrounded = false;
         }
 
         // Requiring the player to NOT be on the ground in order to dive, hopefully to prevent them from forcing themselves through the floor lol
@@ -158,7 +157,6 @@ public class PlayerController : MonoBehaviour
                     else if (swipe.magnitude < swipeThreshold)
                     {
                         Jump();
-                        isGrounded = false;
                     }
                 }
             }
@@ -182,38 +180,53 @@ public class PlayerController : MonoBehaviour
 
     void Jump()
     {
+        stallTimer = 0f;
+        isGrounded = false;
+
         // Set player velocity to jump height 
         Vector2 velocity = rb.linearVelocity;
         velocity.y = jumpHeight;
         rb.linearVelocity = velocity;
+
         // Play player flap sound
         audioSource.PlayOneShot(PC_Flap);
+
+        // Animation stuff
         animator.SetBool(PARAM_DIVE, false);
         animator.SetBool(PARAM_DASH, false);
+        animator.SetBool(PARAM_SUCCESS, false);
     }
 
     void Dive()
     {
+        stallTimer = 0f;
+
         // Negate player velocity so they go down
         Vector2 velocity = rb.linearVelocity;
         velocity.y = -diveSpeed;
         rb.linearVelocity = velocity;
+
         // Play player dive sound
         audioSource.PlayOneShot(PC_Dive);
+
         // Dive Anim
         animator.SetBool(PARAM_DIVE, true);
         animator.SetBool(PARAM_DASH, false);
+        animator.SetBool(PARAM_SUCCESS, false);
     }
 
     void Stall()
     {
         // Set timer
         stallTimer = stallTime;
+
         // Play player stall sound
         audioSource.PlayOneShot(PC_Stall);
+
         // Stall Anim
         animator.SetBool(PARAM_DASH, true);
         animator.SetBool(PARAM_DIVE, false);
+        animator.SetBool(PARAM_SUCCESS, false);
     }
 
     void OnCollisionEnter2D(Collision2D other)
