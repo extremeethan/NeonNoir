@@ -153,11 +153,30 @@ public class DataManager : MonoBehaviour
 
     public void UnlockAll()
     {
+        // Highest Level Unlocked is Endless
         saveData.highestLevelUnlocked = 4;
-        FindFirstObjectByType<MainMenu>()?.UpdateLevelLocks();
-        //FindFirstObjectByType<MainMenu>()?.UpdateLoreUnlocks();
+
+        // Unlock All Lore
+        CollectLore("Lore_I_LevelOne");
+        CollectLore("Lore_O_LevelOne");
+        CollectLore("Lore_I_LevelTwo");
+        CollectLore("Lore_O_LevelTwo");
+        CollectLore("Lore_I_LevelThree");
+        CollectLore("Lore_O_LevelThree");
+
+        // Refresh Menu UI
+        MainMenu mainMenu = FindFirstObjectByType<MainMenu>();
+
+        if (mainMenu != null)
+        {
+            mainMenu.UpdateLevelLocks();
+            mainMenu.UpdateLoreUnlocks();
+        }
+
+        // Save
         SaveGame();
 
+        // Console
         Debug.Log("Master Key Inserted. Everything is Unlocked!");
     }
 }
