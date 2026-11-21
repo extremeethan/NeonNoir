@@ -21,7 +21,9 @@ public class ScoreManager : MonoBehaviour
 
     void Update()
     {
-        if (FindFirstObjectByType<PlayerController>() == null || !gameManager.isGameActive || pauseMenu.isPaused)
+        PlayerController player = FindFirstObjectByType<PlayerController>();
+
+        if (player == null || player.PlayerDead || !gameManager.isGameActive || pauseMenu.isPaused)
         {
             return;
         }
@@ -34,8 +36,12 @@ public class ScoreManager : MonoBehaviour
 
     public void AddScore(float points)
     {
-        if (!gameManager.isGameActive || pauseMenu.isPaused)
+        PlayerController player = FindFirstObjectByType<PlayerController>();
+
+        if (player == null || player.PlayerDead || !gameManager.isGameActive || pauseMenu.isPaused)
+        {
             return;
+        }
 
         score += points;
         scoreText.text = Mathf.FloorToInt(score).ToString();

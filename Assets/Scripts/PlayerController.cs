@@ -30,6 +30,7 @@ public class PlayerController : MonoBehaviour
     private Color defaultColor;
 
     public GameManager gameManager;
+    public bool PlayerDead => isDead;
 
     private Vector2 touchStartPosition;
     public float swipeThreshold = 50f;
