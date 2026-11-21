@@ -21,6 +21,7 @@ public class PlayerController : MonoBehaviour
     public float hurtDuration = 0.5f;
     private float hurtTimer = 0f;
     private bool isDead;
+    public float deathDelay = 1f;
 
     public float blinkInterval = 0.1f;
     private float blinkTimer = 0f;
@@ -81,7 +82,7 @@ public class PlayerController : MonoBehaviour
     // Update is for events called per frame
     void Update()
     {
-        if (!gameManager.isGameActive)
+        if (!gameManager.isGameActive || isDead)
             return;
 
         // Player Speed increases over time
@@ -387,13 +388,27 @@ public class PlayerController : MonoBehaviour
     void Die()
     {
         isDead = true;
-        gameObject.SetActive(false);
-        gameManager.GameOver();
+
+        // Freeze player in place
+        rb.linearVelocity = Vector2.zero;
+        rb.simulated = false;
+
+        // Anim
+        animator.SetBool(PARAM_HURT, true);
 
         // Play Death Sound
         audioSource.PlayOneShot(PC_Death);
 
-        //animator.SetBool(PARAM_HURT, true);
+        // Delay before Game Over
+        StartCoroutine(DeathSequence());
+    }
+
+    System.Collections.IEnumerator DeathSequence()
+    {
+        yield return new WaitForSeconds(deathDelay);
+
+        gameObject.SetActive(false);
+        gameManager.GameOver();
     }
 }
 
