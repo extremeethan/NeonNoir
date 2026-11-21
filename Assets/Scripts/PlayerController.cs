@@ -18,6 +18,8 @@ public class PlayerController : MonoBehaviour
     public int currentLives;
     public float damageCooldown = 1.5f;
     private float damageTimer = 0f;
+    public float hurtDuration = 0.5f;
+    private float hurtTimer = 0f;
     private bool isDead;
 
     public GameManager gameManager;
@@ -113,6 +115,17 @@ public class PlayerController : MonoBehaviour
         if (damageTimer > 0)
         {
             damageTimer -= Time.deltaTime;
+        }
+
+        // Timer for hurt animation
+        if (hurtTimer > 0)
+        {
+            hurtTimer -= Time.deltaTime;
+
+            if (hurtTimer <= 0)
+            {
+                animator.SetBool(PARAM_HURT, false);
+            }
         }
 
         // Player has gone below the bottom height limit, KILL THEM
@@ -266,7 +279,9 @@ public class PlayerController : MonoBehaviour
 
                 LoseLife();
                 damageTimer = damageCooldown;
+
                 // Damaged Anim
+                hurtTimer = hurtDuration;
                 animator.SetBool(PARAM_HURT, true);
 
                 Debug.Log("Lives Remaining " + currentLives);
@@ -299,12 +314,6 @@ public class PlayerController : MonoBehaviour
         if (other.CompareTag("ChunkParent"))
         {
             Destroy(other.gameObject, 5f);
-        }
-
-        if (other.CompareTag("Obstacle"))
-        {
-            // Damaged Anim Turn Off
-            animator.SetBool(PARAM_HURT, false);
         }
     }
 

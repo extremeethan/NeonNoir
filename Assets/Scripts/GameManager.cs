@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     {
         gameOverScreen.SetActive(false);
         winScreen.SetActive(false);
+        HUD.SetActive(true);
 
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
