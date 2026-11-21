@@ -25,6 +25,10 @@ public class MainMenu : MonoBehaviour
     public GameObject levelThreeIntroLore;
     public GameObject levelThreeOutroLore;
 
+    private static bool hasShownStartScreen = false;
+    public GameObject startScreen;
+    private bool waitingToStart = false;
+
     void Start()
     {
         Cursor.visible = true;
@@ -38,6 +42,31 @@ public class MainMenu : MonoBehaviour
 
         UpdateLevelLocks();
         UpdateLoreUnlocks();
+
+        if (!hasShownStartScreen)
+        {
+            startScreen.SetActive(true);
+            waitingToStart = true;
+            hasShownStartScreen=true;
+        }
+        else
+        {
+            startScreen.SetActive(false);
+        }
+    }
+
+    void Update()
+    {
+        if (waitingToStart && (Input.anyKeyDown || Input.touchCount > 0))
+        {
+            LaunchGame();
+        }
+    }
+
+    public void LaunchGame()
+    {
+        waitingToStart = false;
+        startScreen.SetActive(false);
     }
 
     private void OnEnable()
