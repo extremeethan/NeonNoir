@@ -22,6 +22,12 @@ public class PlayerController : MonoBehaviour
     private float hurtTimer = 0f;
     private bool isDead;
 
+    public float blinkInterval = 0.1f;
+    private float blinkTimer = 0f;
+    private SpriteRenderer spriteRenderer;
+    private bool isBlinking = false;
+    private Color defaultColor;
+
     public GameManager gameManager;
 
     private Vector2 touchStartPosition;
@@ -62,6 +68,8 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         currentLives = maxLives;
         animator = GetComponent<Animator>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        defaultColor = spriteRenderer.color;
 
         animator.SetBool(PARAM_DASH, false);
         animator.SetBool(PARAM_DIVE, false);
@@ -115,6 +123,22 @@ public class PlayerController : MonoBehaviour
         if (damageTimer > 0)
         {
             damageTimer -= Time.deltaTime;
+            blinkTimer -= Time.deltaTime;
+
+            if (blinkTimer <= 0)
+            {
+                isBlinking = !isBlinking;
+
+                spriteRenderer.color = isBlinking
+                    ? Color.white
+                    : new Color(1f, 1f, 1f, 0.5f);
+
+                blinkTimer = blinkInterval;
+            }
+        }
+        else
+        {
+            spriteRenderer.color = defaultColor;
         }
 
         // Timer for hurt animation
@@ -279,6 +303,10 @@ public class PlayerController : MonoBehaviour
 
                 LoseLife();
                 damageTimer = damageCooldown;
+
+                blinkTimer = blinkInterval;
+                isBlinking = true;
+                spriteRenderer.enabled = true;
 
                 // Damaged Anim
                 hurtTimer = hurtDuration;
