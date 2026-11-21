@@ -1,8 +1,16 @@
+using System;
 using UnityEngine;
 using UnityEngine.Video;
 
 public class VideoManager : MonoBehaviour
 {
+    public enum CutsceneType
+    {
+        Intro,
+        Outro
+    }
+    public CutsceneType cutsceneType;
+
     public VideoPlayer videoPlayer;
     public GameObject videoProjector;
 
@@ -11,13 +19,22 @@ public class VideoManager : MonoBehaviour
     private float videoTimer;
     private bool videoFinished = false;
 
+    private Action onVideoFinished;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        FindFirstObjectByType<GameManager>().isGameActive = false;
+        if (cutsceneType == CutsceneType.Intro)
+        {
+            FindFirstObjectByType<GameManager>().isGameActive = false;
+        }
 
         videoPlayer.loopPointReached += OnVideoFinished;
-        videoPlayer.Play();
+
+        if (cutsceneType == CutsceneType.Intro)
+        {
+            videoPlayer.Play();
+        }
     }
 
     // Update is called once per frame
@@ -28,12 +45,7 @@ public class VideoManager : MonoBehaviour
 
         videoTimer += Time.unscaledDeltaTime;
 
-        if (videoTimer >= skipDelay && Input.anyKeyDown)
-        {
-            FinishVideo();
-        }
-
-        if (videoTimer >= skipDelay && Input.touchCount > 0)
+        if (videoTimer >= skipDelay && (Input.anyKeyDown || Input.touchCount > 0))
         {
             FinishVideo();
         }
@@ -42,6 +54,17 @@ public class VideoManager : MonoBehaviour
     void OnVideoFinished(VideoPlayer videoPlayer)
     {
         FinishVideo();
+    }
+
+    public void PlayOutro(Action callback)
+    {
+        onVideoFinished = callback;
+
+        videoTimer = 0f;
+        videoFinished = false;
+
+        videoProjector.SetActive(true);
+        videoPlayer.Play();
     }
 
     void FinishVideo()
@@ -54,7 +77,15 @@ public class VideoManager : MonoBehaviour
         videoPlayer.Stop();
         videoProjector.SetActive(false);
 
-        FindFirstObjectByType<GameManager>().isGameActive = true;
+        if (cutsceneType == CutsceneType.Intro)
+        {
+            FindFirstObjectByType<GameManager>().isGameActive = true;
+        }
+        else if (cutsceneType == CutsceneType.Outro)
+        {
+            onVideoFinished?.Invoke();
+            onVideoFinished = null;
+        }
     }
 
     void OnDestroy()

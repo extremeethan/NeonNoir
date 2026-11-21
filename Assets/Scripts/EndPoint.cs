@@ -6,27 +6,42 @@ public class EndPoint : MonoBehaviour
     private bool levelCompleted = false;
 
     public string loreID;
+
+    public VideoManager outroVideoManager;
     
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player") && !levelCompleted)
         {
             levelCompleted = true;
-            ScoreManager scoreManager = FindFirstObjectByType<ScoreManager>();
 
-            if (scoreManager != null)
+            if (outroVideoManager != null)
             {
-                DataManager.Instance.SaveHighestScore(currentLevel, Mathf.FloorToInt(scoreManager.score));
+                outroVideoManager.PlayOutro(CompleteLevel);
             }
-
-            if (!string.IsNullOrEmpty(loreID))
+            else
             {
-                DataManager.Instance.CollectLore(loreID);
+                CompleteLevel();
             }
-
-            DataManager.Instance.UnlockedNextLevel(currentLevel);
-            FindFirstObjectByType<GameManager>().LevelComplete();
-            Debug.Log($"{currentLevel} complete.");
         }
+    }
+
+    void CompleteLevel()
+    {
+        ScoreManager scoreManager = FindFirstObjectByType<ScoreManager>();
+
+        if (scoreManager != null)
+        {
+            DataManager.Instance.SaveHighestScore(currentLevel, Mathf.FloorToInt(scoreManager.score));
+        }
+
+        if (!string.IsNullOrEmpty(loreID))
+        {
+            DataManager.Instance.CollectLore(loreID);
+        }
+
+        DataManager.Instance.UnlockedNextLevel(currentLevel);
+        FindFirstObjectByType<GameManager>().LevelComplete();
+        Debug.Log($"{currentLevel} complete.");
     }
 }
