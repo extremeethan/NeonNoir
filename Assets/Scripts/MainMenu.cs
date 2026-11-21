@@ -18,9 +18,12 @@ public class MainMenu : MonoBehaviour
     public Button levelThreeButton;
     public Button endlessButton;
 
-    public GameObject levelOneLore;
-    public GameObject levelTwoLore;
-    public GameObject levelThreeLore;
+    public GameObject levelOneIntroLore;
+    public GameObject levelOneOutroLore;
+    public GameObject levelTwoIntroLore;
+    public GameObject levelTwoOutroLore;
+    public GameObject levelThreeIntroLore;
+    public GameObject levelThreeOutroLore;
 
     void Start()
     {
@@ -34,6 +37,7 @@ public class MainMenu : MonoBehaviour
         loreScreen.SetActive(false);
 
         UpdateLevelLocks();
+        UpdateLoreUnlocks();
     }
 
     private void OnEnable()
@@ -77,9 +81,15 @@ public class MainMenu : MonoBehaviour
             return;
         }
 
-        levelOneLore.SetActive(DataManager.Instance.HasCollectedLore("Lore_LevelOne"));
-        levelTwoLore.SetActive(DataManager.Instance.HasCollectedLore("Lore_LevelTwo"));
-        levelThreeLore.SetActive(DataManager.Instance.HasCollectedLore("Lore_LevelThree"));
+        levelOneIntroLore.SetActive(DataManager.Instance.HasCollectedLore("Lore_I_LevelOne"));
+        levelOneOutroLore.SetActive(DataManager.Instance.HasCollectedLore("Lore_O_LevelOne"));
+
+        levelTwoIntroLore.SetActive(DataManager.Instance.HasCollectedLore("Lore_I_LevelTwo"));
+        levelTwoOutroLore.SetActive(DataManager.Instance.HasCollectedLore("Lore_O_LevelTwo"));
+
+        levelThreeIntroLore.SetActive(DataManager.Instance.HasCollectedLore("Lore_I_LevelThree"));
+        levelThreeOutroLore.SetActive(DataManager.Instance.HasCollectedLore("Lore_O_LevelThree"));
+
     }
 
     // Now Loads the level with the highest unlocked index

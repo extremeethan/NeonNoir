@@ -37,6 +37,8 @@ public class DataManager : MonoBehaviour
             saveData = new SaveData();
             SaveGame();
         }
+
+        CollectLore("Lore_I_LevelOne");
     }
 
     public void SaveGame()
@@ -120,6 +122,17 @@ public class DataManager : MonoBehaviour
         if (nextLevel > saveData.highestLevelUnlocked)
         {
             saveData.highestLevelUnlocked = nextLevel;
+
+            // pre
+            switch (nextLevel)
+            {
+                case 2:
+                    CollectLore("Lore_I_LevelTwo");
+                    break;
+                case 3:
+                    CollectLore("Lore_I_LevelThree");
+                    break;
+            }
             SaveGame();
         }
     }
