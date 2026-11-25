@@ -63,6 +63,8 @@ public class VideoManager : MonoBehaviour
         videoTimer = 0f;
         videoFinished = false;
 
+        FindFirstObjectByType<GameManager>().isGameActive = false;
+
         videoProjector.SetActive(true);
         videoPlayer.Play();
     }

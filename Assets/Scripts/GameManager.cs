@@ -42,9 +42,6 @@ public class GameManager : MonoBehaviour
 
     public void LevelComplete()
     {
-        if (!isGameActive)
-            return;
-
         isGameActive = false;
         Time.timeScale = 0f;
         winScreen.SetActive(true);
