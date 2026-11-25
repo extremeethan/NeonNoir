@@ -219,6 +219,14 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4239029162168890544, guid: e852af9cbc973854396a3eb4e4c16ff5, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 274547354}
+    - target: {fileID: 4239029162168890544, guid: e852af9cbc973854396a3eb4e4c16ff5, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PauseGame
+      objectReference: {fileID: 0}
     - target: {fileID: 8005787187376321653, guid: e852af9cbc973854396a3eb4e4c16ff5, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -231,6 +239,14 @@ PrefabInstance:
       propertyPath: endFlag
       value: 
       objectReference: {fileID: 103764061}
+    - target: {fileID: 8616195726647728288, guid: e852af9cbc973854396a3eb4e4c16ff5, type: 3}
+      propertyPath: levelStart
+      value: 
+      objectReference: {fileID: 274547355}
+    - target: {fileID: 8616195726647728288, guid: e852af9cbc973854396a3eb4e4c16ff5, type: 3}
+      propertyPath: levelFinish
+      value: 
+      objectReference: {fileID: 2034107508584131005}
     - target: {fileID: 8616195726647728288, guid: e852af9cbc973854396a3eb4e4c16ff5, type: 3}
       propertyPath: isCurrentLevelEndless
       value: 1
@@ -493,6 +509,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5da68f2810a13b4f825641dcddd90bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &274547355 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1149442284074754181, guid: e58bd6113be5585408f83dd8c6c3331e, type: 3}
+  m_PrefabInstance: {fileID: 274547352}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &287422410
 GameObject:
   m_ObjectHideFlags: 0
@@ -2273,6 +2294,30 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 5377557168468916504, guid: 7c1f4d6e47c50e24eb84e16428a8b1bc, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1475648269654476986}
+    - target: {fileID: 5377557168468916504, guid: 7c1f4d6e47c50e24eb84e16428a8b1bc, type: 3}
+      propertyPath: endFlag
+      value: 
+      objectReference: {fileID: 1861620133}
+    - target: {fileID: 5377557168468916504, guid: 7c1f4d6e47c50e24eb84e16428a8b1bc, type: 3}
+      propertyPath: levelStart
+      value: 
+      objectReference: {fileID: 274547355}
+    - target: {fileID: 5377557168468916504, guid: 7c1f4d6e47c50e24eb84e16428a8b1bc, type: 3}
+      propertyPath: levelFinish
+      value: 
+      objectReference: {fileID: 2034107508584131005}
+    - target: {fileID: 5460242022230390551, guid: 7c1f4d6e47c50e24eb84e16428a8b1bc, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5905572178197420009, guid: 7c1f4d6e47c50e24eb84e16428a8b1bc, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7555642283672315696, guid: 7c1f4d6e47c50e24eb84e16428a8b1bc, type: 3}
       propertyPath: m_Name
       value: Game Over
@@ -2507,6 +2552,11 @@ Transform:
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3425154719091337922, guid: e852af9cbc973854396a3eb4e4c16ff5, type: 3}
   m_PrefabInstance: {fileID: 103764057}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1861620133 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5905572178197420009, guid: 7c1f4d6e47c50e24eb84e16428a8b1bc, type: 3}
+  m_PrefabInstance: {fileID: 1562773959}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &2048341282
 GameObject:
@@ -2750,6 +2800,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9ea95e39da82fce4490a1719cad152a8, type: 3}
+--- !u!4 &2034107508584131005 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2277954910493663466, guid: 9ea95e39da82fce4490a1719cad152a8, type: 3}
+  m_PrefabInstance: {fileID: 2034107508584131004}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8537045743415545930
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -131,6 +131,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Level1Chunks
       objectReference: {fileID: 0}
+    - target: {fileID: 94040421287200106, guid: b85ff9d45fe4669429df4a4eeca99c63, type: 3}
+      propertyPath: loreID
+      value: Lore_O_LevelOne
+      objectReference: {fileID: 0}
     - target: {fileID: 111643038607840068, guid: b85ff9d45fe4669429df4a4eeca99c63, type: 3}
       propertyPath: m_Name
       value: runBase break6
@@ -1553,7 +1557,7 @@ PrefabInstance:
     - target: {fileID: 7446069515873480848, guid: 99405f12aedae5c428ff9ae03c1c7dfc, type: 3}
       propertyPath: playerController
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1540846650}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2769,6 +2773,14 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.x
       value: 6.999756
       objectReference: {fileID: 0}
+    - target: {fileID: 4239029162168890544, guid: e852af9cbc973854396a3eb4e4c16ff5, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 209494217}
+    - target: {fileID: 4239029162168890544, guid: e852af9cbc973854396a3eb4e4c16ff5, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PauseGame
+      objectReference: {fileID: 0}
     - target: {fileID: 4738885452345062201, guid: e852af9cbc973854396a3eb4e4c16ff5, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -2978,10 +2990,10 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 209494216}
-  - {fileID: 1475955918}
   - {fileID: 1818915787}
+  - {fileID: 1475955918}
   - {fileID: 1896820628}
+  - {fileID: 1209818628}
   - {fileID: 1540846648}
   - {fileID: 1441565216}
-  - {fileID: 1209818628}
   - {fileID: 181897125}
